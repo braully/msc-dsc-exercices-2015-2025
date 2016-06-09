@@ -1,0 +1,22 @@
+\begin{thebibliography}{}
+
+\bibitem[Corporation a]{JavaRMI}
+Corporation, O.
+\newblock Java remote method invocation api - java se documentation.
+\newblock \url{http://docs.oracle.com/javase/7/docs/technotes/guides/rmi}.
+\newblock Acessado: 2015-05-01.
+
+\bibitem[Corporation b]{JavaDoc}
+Corporation, O.
+\newblock Synchronized methods - the java tutorials.
+\newblock
+  \url{https://docs.oracle.com/javase/tutorial/essential/concurrency/syncmeth.%
+html}.
+\newblock Acessado: 2015-05-01.
+
+\bibitem[Toscani et~al. 2003]{toscani2003sistemas}
+Toscani, S., de~Oliveira, R., and da~Silva~Carissimi, A. (2003).
+\newblock {\em Sistemas operacionais e programa{\c{c}}{\~a}o concorrente}.
+\newblock S{\'e}rie Livros Did{\'a}ticos. Sagra Luzzatto.
+
+\end{thebibliography}

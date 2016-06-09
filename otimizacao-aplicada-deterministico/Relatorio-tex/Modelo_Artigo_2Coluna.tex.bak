@@ -1,0 +1,298 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{graphics}
+\usepackage[dvips]{graphicx}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[dvips,colorlinks,bookmarksopen,bookmarksnumbered,citecolor=red,urlcolor=red]{hyperref}
+
+\ifCLASSINFOpdf
+  \else
+\fi
+
+\hyphenation{Bi-blio-te-ca}
+
+
+\begin{document}
+\title{Como Escrever um Relatório em \LaTeX~Utilizando \emph{Template} do IEEE}
+
+\author{José Manual da Silva; Mais um Autor
+
+\thanks{W. P. Calixto e-mail: wpcalixto@ieee.org}% <-this % stops a space
+
+\thanks{Eu ACHO QUE ISTO É IMPORTANTE}
+
+\thanks{Universidade Federal de Goiás - Escola de Engenharia Elétrica, Mecânica~e de Computação
+CEP 74510-010, Goiânia - Goiás, Brasil}% <-this % stops a space
+
+\thanks{Relatório entregue em \today.}}
+
+\markboth{Tópico em Sistemas Elétricos II - Introdução a Geoprospecção}
+{ \MakeLowercase{\textit{}}: }
+\maketitle
+
+\begin{abstract}
+Escreva aqui o seu resumo
+\end{abstract}
+
+\begin{IEEEkeywords}
+Escreva aqui suas palavras-chaves
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\section{Introdução}\label{sec1}
+\IEEEPARstart{E}{screva} aqui a sua introdução conforme texto anexo: aqui a sua introdução conforme texto anexo aqui a sua introdução conforme texto anexo aqui a sua introdução conforme texto anexo aqui a sua introdução conforme texto anexo aqui a sua introdução conforme texto anexo $\beta_2 = \oint_{- \infty}^{+ \infty} \sqrt{\frac{\alpha^2}{x \cdot \pi}}~dx$ \\
+
+\begin{itemize}
+  \item[$\bigtriangleup$] Escreva I
+  \item[$\bigtriangleup$] Escreva I
+  \item[$\bigtriangleup$] Escreva I
+\end{itemize}
+
+
+Conforme Seção \ref{sec1}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Tabela de Exemplo}
+    \begin{tabular}{c|c|c|c|c|c|c|c}
+    23    & 23    & 23    & 23    & 23    & \multicolumn{2}{c}{23} & 23 \\\hline
+
+    22    & 22    & 22    & 22    & 22    & 22    & 22    & 22 \\\hline
+    21    & 21    & 21    & 21    & 21    & 21    & 21    & 21 \\\hline
+    20    & 20    & 20    & 20    & 20    & 20    & 20    & 20 \\\hline
+    19    & 19    & 19    & 19    & 19    & 19    & 19    & 19 \\\hline
+      \end{tabular}%
+  \label{tab:addlabel}%
+\end{table}%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{equation}
+F(x) = \sum_{i=1}^{+\infty} y_i \cdot x_i
+\label{equ1}
+\end{equation}
+
+
+Conforme (\ref{equ1}), a função lkhlsdh
+
+%\pagebreak[4]
+\section{Metodologia}\label{sec2}
+Escreva aqui sua metodologia
+
+\subsection{Primeira Subseção}\label{sec21}
+\vspace{10pt}
+Aqui vou fazer uma citação que funciona assim \cite{ORELLANA, ALAMO}. Como vocês perceberam fazer citação é fácil. Vamos colocar uma figura, Fig.~\ref{fig1ag}, Tab.~\ref{tab1}.
+\subsubsection{Segunda Subseção}\label{sec22}
+
+
+
+\section{Resultados}\label{sec3}
+Escreva aqui seus resultados
+
+
+
+\section{Conclusão}\label{sec4}
+Escreva aqui sua conclusão como ilustrado na Fig.~\ref{1ag}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=15pc]{1ag}
+\caption{Título da figura 1.}
+\label{1ag}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=15pc]{1ag}
+\caption{Título da figura 2.}
+\label{1ag}
+\end{center}
+\end{figure}
+
+
+
+\begin{table}[!ht]
+\renewcommand{\arraystretch}{1.3}
+\caption{Título da tabela.}
+\centering
+\begin{tabular}{c||c}\hline
+                & \bfseries Experimental\\
+\bfseries a     & \bfseries Resistivity\\
+\bfseries ($m$) & \bfseries ($\Omega.m$)\\\hline\hline
+
+ $1.0$ & $10484.43$ \\
+ $2.0$ & $10786.84$ \\
+ $4.0$ & $ 8104.34$ \\
+ $8.0$ & $11308.53$ \\
+$16.0$ & $12036.63$ \\\hline
+\end{tabular}
+\label{tab1}
+\end{table}
+
+
+\begin{table}[!h]
+\renewcommand{\arraystretch}{1.3}
+\caption{Título da tabela 2.}
+\centering
+\begin{tabular}{ll|l|l|}
+\hline
+\multicolumn{2}{|c|}{} & s & s \\
+\hline
+\multicolumn{1}{|l|}{a} & s & \multicolumn{2}{c|}{s} \\
+\hline
+\multicolumn{1}{|l|}{a} & s & s & s \\
+\hline
+\multicolumn{2}{|c|}{a} & s & s \\
+\hline
+\end{tabular}
+\label{tab2}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{Agradecimentos}
+The National Electricity Board - ANEEL, for its financial support in the form of project P \& D. The Electricity Supply Company - CELG, for the data collected and the Coordinating Body for the Formation of Higher Education Personnel - CAPES - for the grant it provided.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+\begin{thebibliography}{1}
+
+\bibitem{GRIFFITHS}
+D. H. GRIFFITHS; R. F. KING,
+``Applied Geophysics for Engineers and Geologists: The Elements of Geophysical Prospecting.'' {\it Pergamon Press, Oxford, GBR.,}
+{\bf} (1981).
+
+\bibitem{ORELLANA} E. ORELLANA,
+``Prospeccion Geoelectrica por Campos Variables.'' {\it Biblioteca Tecnica Philips: Paraninfo Madrid,}
+{\bf } (1974).
+
+\bibitem{ALAMO} J. L. del ALAMO,
+``A Comparison Among Eight Different Techniques to Achieve an Optimum Estimation of Electrical Grounding Parameters in Two-Layered Earth.'' {\it IEEE Transactions on Power Delivery,}
+{\bf vol. 8 n° 4 pp. 1890-1899} (1993).
+
+\bibitem{a01} H. YANG; J. YUAN; W. ZONG,
+``Determination of Three-Layer Earth Model from Wenner Four-Probe Test Data.'' {\it IEEE Transactions Magnetics,}
+{\bf vol. 37 n° 5 pp. 3684-3687} (2001).
+
+\bibitem{a02} P. J. LAGACE; J. FORTIN; E. D. CRAINIC,
+``Interpretation of Resistivity Sounding Measurement in N-layer Soil Using Electrostatic Images.'' {\it IEEE Transactions on Power Delivery,}
+{\bf vol. 11 n° 3 pp. 1349-1354} (1996).
+
+\bibitem{a03} B. ZHANG; X. CUI; L. LI; J. HE,
+``Parameter Estimation of Horizontal Multilayer Earth by Complex Image Method.'' {\it IEEE Transactions on Power Delivery,}
+{\bf vol. 20 n° 2 pp. 1394-1401} (2005).
+
+\bibitem{a04} P. J. LAGACE; M. H. VUONG; M. LEFEBVRE; J. FORTIN,
+``Multilayer resistivity interpretation and error estimation using electrostatic images.'' {\it IEEE Transactions on Power Delivery,}
+{\bf vol. 21 n° 4 pp. 1954-1960} (2006).
+
+\bibitem{a3} IEEE Std 142-1991,
+``Recommended Practice for Grounding of Industrial and Commercial Power Systems.'' {\it Institute of Electrical and Electronics Engineers, Inc.}
+{\bf }
+
+\bibitem{a4} IEEE 81:1983,
+``Guide for measuring earth resistivity, ground impedance and earth surface potentials of a ground system.'' {\it Institute of Electrical and Electronics Engineers, Inc.}
+{\bf }
+
+\bibitem{a05} I. F. GONOS; I. A. STATHOPULOS,
+``Estimation of multilayer soil parameters using genetic algorithms.'' {\it IEEE Transactions on Power Delivery,}
+{\bf vol. 20 n° 1 pp. 100-106} (2005).
+
+\bibitem{a1} E. ORELLANA,
+``Prospeccion Geoelectrica en Corriente Continua.'' {\it Biblioteca Tecnica Philips: Paraninfo Madrid,}
+{\bf } (1974).
+
+\bibitem{a2} R. W. RYDER,
+``Earth Principles and Practice.'' {\it Pitman and Sons, London,}
+{\bf } (1969).
+
+\bibitem{a5} Y. L. CHOW; J. J. YANG; K. D. SRIVASTAVA,
+``Grounding Resistance of Buried Electrodes in Multi-Layer Earth Predicted by Simple Voltage Measurements along Earth Surface: A Theoretical Discussion.'' {\it IEEE Transactions on Power Delivery,}
+{\bf vol. 10} (1995).
+
+\bibitem{a6} A. L. KINYON,
+``Correlation of Measured and Calculated Substation Ground Grid Resistance.'' {\it AIEE transactions,}
+{\bf paper 59-806, nov,} (1959).
+
+\bibitem{a7} F. A. WENNER,
+``Method of Measuring Earth Resistivity.'' {\it Bulletin of the National Bureau of Standards, Washington D.C.,}
+{\bf vol. 12,} (1916).
+
+\bibitem{a8} F. P. DAWALIBI; D. MUKHEDKAR,
+``Ground Electrode Resistance Measurements in Nonuniform Soils.'' {\it IEEE Transactions on Power Apparatus and Systems,}
+{\bf vol. PAS-93} (1974).
+
+\bibitem{a14} E. D. SUNDE,
+``Earth conduction effects in transmission systems.'' {\it MacMilan, New York,}
+{\bf } (1968).
+
+\bibitem{a12} Z. MICHALEWICZ; D. B. FOGEL,
+``How to Solve it: Modern Heuristics.'' {\it Ed. Springer, Berlin, Germany.,}
+{\bf } (1999).
+
+\bibitem{pac} W. P. CALIXTO,
+``Application of Conformal Mapping to the Calculus of Carter's Factor.'' {\it Masters Degree Dissertation (in portuguese), Electrical \& Computer Engineering School, Federal University of Goias, Goiania, Brazil,} (2008).
+
+\bibitem{a10} D. E. GOLDBERGE,
+``Genetic Algorithms in Search, optimization, and Machine Learning.'' {\it Addison-Wesley, New York,}
+{\bf } (1989).
+
+\bibitem{a13} M. MITCHELL,
+``An Introduction to Genetic Algorithms.'' {\it Ed. MIT Press, London,}
+{\bf } (1996).
+
+\bibitem{a9} T. BACK,
+``Evolutionary Algorithms in Theory and Practice: Evolution Strategies Evolutionary Programming Genetic Algorithms.'' {\it Oxford University Press, Oxford, GBR.,}
+{\bf } (1996).
+
+\bibitem{a11} J. H. HOLLAND,
+``Adaptation in Natural and Artificial Systems.'' {\it The MIT Press, London,}
+{\bf} (1992).
+
+\bibitem{a15new} S. J. PIRSON,
+``Geologic Well Log Analysis.'' {\it Gulf Publishing Co, Houston, Texas}
+{\bf} (1963).
+
+\bibitem{a16} Y. L. CHOW; J. J. YANG; K. D. SRIVASTAVA,
+``Complex Images of a Ground Electrode in Layered Soil.'' {\it Journal of Applied Physics,}
+{\bf vol. 71, pg 569-574} (1992).
+
+\end{thebibliography}
+
+
+\end{document}
+
+

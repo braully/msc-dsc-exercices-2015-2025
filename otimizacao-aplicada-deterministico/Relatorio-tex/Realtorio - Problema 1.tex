@@ -1,0 +1,594 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{graphics}
+%\usepackage{graphicx}
+\usepackage[dvips]{graphicx}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[dvips,colorlinks,bookmarksopen,bookmarksnumbered,citecolor=red,urlcolor=red]{hyperref}
+\usepackage{listings}
+\usepackage{amsmath, amsthm, amssymb}
+
+\ifCLASSINFOpdf
+  \else
+\fi
+
+\hyphenation{Bi-blio-te-ca}
+
+
+\begin{document}
+\title{Projeto 1 - Tópicos em Controle e Automação - Processos de Otimização Aplicada}
+\author{Braully Rocha da Silva}
+\thanks{W. P. Calixto e-mail: wpcalixto@ieee.org}
+\thanks{Universidade Federal de Goiás - Escola de Engenharia Elétrica, Mecânica~e de Computação CEP 74510-010, Goiânia - Goiás, Brasil}% <-this % stops a space
+
+\maketitle
+
+\begin{abstract}
+Relatório do desenvolvimento do primeiro projeto da disciplina de processos de otimização, 
+que consiste em três problemas a serem otimizados com métodos determinísticos com o uso do matlab e suas ferramentas auxiliares
+descrevendo as soluções encontradas.
+\end{abstract}
+
+\begin{IEEEkeywords}
+processos de otimização, matlab, otimização
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\section{Introdução}\label{sec1}
+\IEEEPARstart{E}{ncontrar} soluções ótimas para um problema nem sempre  é uma tarefa fácil, 
+uma importante ferramenta para esse fim são  os processos de otimização utilizando métodos determinísticos.
+Neste relatório pretende-se apresentar uma análise de um conjunto de problemas de otimização e suas soluções ótimas,
+usando métodos de busca determinísticos  guiados por funções de avaliações específicas para cada problema - em suma, aplicando processos de otimização. \\
+
+%\pagebreak[4]
+\section{Metodologia}\label{sec2}
+Para cada problema apresentado  foi  desenvolvido uma  função de avaliação que implementada no Matlab[1],
+permitiu a aplicação de métodos de busca determinísticos, auxiliando assim a identificação de uma solução ótima para o problema originário.
+Para alguns casos especiais  foi necessário  a análise gráfica do comportamento dos valores das equações diferencias,
+assim identificando um bom ponto de partida na busca da solução.
+Neste trabalho  o Matlab foi utilizado como ferramenta principal para executar os métodos de otimização e as funções de avaliação,
+juntamente com o ele  o seu Toolbox de otimização (Optimization toolbox),
+e o pplane8[2]  para auxiliar na visualização dos sistemas de equações diferenciais.
+
+\section{Problemas de otimização}
+Na seguinte seção, iremos explorar 3 problemas de otimização, alguns contendo subdivisões em problemas menores.
+
+\subsection{Equação do Segundo Grau - Problema 1}\label{sec21}
+\vspace{10pt}
+
+O problema de encontrar as raízes de uma equação do segundo grau pode ser facilmente enfrentado como um problema de otimização,
+a priori uma boa escolha de função de avaliação para otimizar o problema (encontrar as raízes) é dada pela função \ref{equ2}.
+
+\begin{equation}
+F_{aval}(x_1,x_2) = |ax_1 + bx_1 + c| + |ax_2 + bx_2 + c|
+\label{equ2}
+\end{equation}
+
+Trata-se de uma função de avaliação válida, visto que tenderá a zero quando seus argumentos forem raízes da equação,
+ porém ela não prioriza que esses valores sejam diferentes, aceitando como solução apenas uma das raízes. 
+
+
+\begin{table}[htbp]
+  \centering
+  \caption{Soluções ótimas encontradas}
+    \begin{tabular}{c|c|c|c|c}
+    \multicolumn{2}{c|}{Parâmetros de entrada} & \multicolumn{3}{|c}{Solução encontrada} \\\hline
+    Método utilizado    & Ponto inicial & $x_1$ & $x_2$ & $F_{aval}$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (0.5, 0.1)    &  1   &  1   &  1.0530e-04 \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (2.5, 2.5)    &  4   &  4   &  1.4843e-04 \\\hline
+      \end{tabular}%
+  \label{tab11}%
+\end{table}%
+		
+Para resolver esse pequeno problema, este trabalho propõe uma melhoria na função de avaliação,
+de modo que a nova função de avaliação qualifique melhor a solução quando as raízes forem valores distintos,
+ao passo que qualifique pior quando as raízes forem iguais.
+
+Ele propõe uma função de avaliação conforme descrito em \ref{equ3},
+de modo que raízes iguais tenham um resultado pior que raízes distintas,
+elevando o resultado da avaliação próximo ao infinito quando nestes casos.
+
+\begin{equation}
+F_{aval}(x_1,x_2) = \frac{|ax_1 + bx_1 + c| + |ax_2 + bx_2 + c|}{|x_1 - x_2|}
+\label{equ3}
+\end{equation}
+
+%Suponha $x_1$ e $x_2$ as raízes, caso $x_1$ seja igual a $x_2$, então teremos um peso de valor $x_1/x_2 = 1$ na avaliação dessa solução. 
+%Caso $x_1$ seja diferente de $x_2$,
+%um peso de valor menor que zero $(x_1 \neq x_2 => min(x_1,x_2)/max(x_1,x_2) < 0)$ será adicionado a avaliação,
+%o que coloca essa solução como melhor que a aquela em que $x_1$ é igual a $x_2$.
+
+%Soluções ótimas encontradas após a melhoria
+%Método Utilizado	Ponto inicial	X1	X2	Faval
+%		1	1	0
+%		1	4	0
+%		4	1	0
+%		4	4	0
+%		
+
+\begin{table}[htbp]
+  \centering
+  \caption{Soluções ótimas encontradas após melhoria da $F_{aval}$}
+    \begin{tabular}{c|c|c|c|c}
+    \multicolumn{2}{c|}{Parâmetros de entrada} & \multicolumn{3}{|c}{Solução encontrada} \\\hline
+    Método utilizado    & Ponto inicial & $x_1$ & $x_2$ & $F_{aval}$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular} & (0.5, 0.1)    &  4   &  1   & 5.5369e-05 \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (2.5, 2.5)    &  1   &  4   & 6.9378e-05 \\\hline
+      \end{tabular}%
+  \label{tab12}%
+\end{table}%
+
+\subsection{Problema 2}\label{sec22}
+
+Desenvolver a função de avaliação e encontrar os valores ótimos, utilizando de métodos determinísticos.
+
+\subsubsection{Corte do Barbante - Problema 2.1}\label{sec221}
+Problema: Dado um fio de barbante de $10m$ de comprimento,
+cortando em dois pedaços, com esses pedaços é possível construir um quadrado e um círculo respectivamente.
+Determine o valor de corte para que o quadrado e o círculo juntos produzam a menor área possível.
+
+Solução: Supondo o corte de tamanho $y$ em um fio de barbante de $10m$, usando o pedaço $y$ para construir um quadrado e $10m-y$ para construir uma circunferência,
+podemos otimizar esse corte $y$ para que a área total do quadrado e da circunferência seja a menor possível,
+para tanto, supomos $x_1$ o tamanho da base do quadrado e $x_2$ o raio da circunferência.
+A área do quadrado é calculada pela base multiplicada pela altura, como em um quadrado temos a base igual a altura,
+podemos inferir a área do quadrado baseada no valor de $x_1$: $A_{quadrado} = x_1.x_1 = (x_1)^2$
+A área da circunferência é calculada pela multiplicação do raio ao quadrado por $\pi$, aplicando a fórmula da área, temos  $A_{circuferencia} = \pi (x_2)^2$
+
+A área total dada pela fórmula \ref{equ4} deve ser minimizada, para tanto construímos um sistema de equações com a seguinte restrição.
+
+\begin{equation}
+A_{total} = A_{quadrado}(x_1) + A_{circunferência}(x_2)
+\label{equ4}
+\end{equation}
+
+\begin{equation}
+F_{aval}(x_1,x_2) = A_{total} = (x_1)^2 + \pi .(x_2)^2 \\
+\label{equ4-1}
+\end{equation}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Valores ótimos encontrados na simulação}
+    \begin{tabular}{c|c|c}
+    Parâmetros de entrada & \multicolumn{2}{|c}{Solução encontrada} \\\hline
+    Método utilizado      & $x_1$   & $x_2$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fmincon/\\Quasi-Newton\end{tabular} & 1.3999m & 0.7003m \\\hline
+      \end{tabular}%
+  \label{tab21}%
+\end{table}%
+
+Encontrado os valores da base do quadrado ($x_1$) e o raio da circunferência ($x_2$) é possível deduzirmos o ponto de corte do barbante em $5,5997m$,
+e construir o quadrado com $5,5997m$ e a circunferência com $4,4003m$ - que é a solução ótima para esse problema.
+
+
+\subsubsection{Perímetro de Retângulo - Problema 2.2}\label{sec222}
+Problema: Encontrar as dimensões de um retângulo com o perímetro de $100m$ que tenha a maior área possível.
+
+Solução: O perímetro de um retângulo de base $x_1$ e altura $x_2$, é dado pela relação $p = 2x_1 + 2x_2$, e a área deste mesmo retângulo é dado pela relação $A_{retangulo} = x_1.x_2$.
+Uma vez que o perímetro do retângulo para o problema analisado é fixado em $100m$ ($p = 100m$),
+uma função de avaliação que pode ser usada para encontrar as dimensões de $x_1$ e $x_2$ com a maior área possível é: 
+
+$$    
+F_{aval}(x_1, x_2) = \frac{1}{x_1.x_2}\\
+$$
+
+Executando a simulação, otimizando o problema através da minimização da função de avaliação, chegamos aos valores ótimos para obter a maior área possível com a base de valor $25m$ ($x_1=25$), e de altura também $25m$ ($x_2=25)$.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Valores ótimos encontrados na simulação}
+    \begin{tabular}{c|c|c}
+    Parâmetros de entrada  & \multicolumn{2}{|c}{Solução encontrada} \\\hline
+    Método utilizado       & $x_1$   & $x_2$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fmincon/\\Quasi-Newton\end{tabular}                & 25m     & 25m \\\hline
+      \end{tabular}%
+  \label{tab22}%
+\end{table}%
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema 2.3}\label{sec223}
+Problema: Encontrar o ponto de equilíbrio para o sistema de equações com duas variáveis.
+
+\begin{lstlisting}[frame=single, language=Matlab]
+x1(1) = 0.2; % Condições iniciais
+x2(1) = 0.8; % Condições iniciais
+t= 0:1:100; % Instantes a considerar
+for ia = 1:size(t,2)-1
+  x1(ia+1)=0.9*x2(ia);
+  x2(ia+1)=-x1(ia)-0.1*x2(ia);
+end
+\end{lstlisting}
+
+Solução: A função de avaliação \ref{equ5} é uma opção para otimizar o sistema para o seu ponto de equilíbrio.
+
+\begin{equation}
+    F_{aval}(x_1,x_2) = (max(x_1) - min(x_1)) + (max(x_2) - min(x_2))
+\label{equ5}
+\end{equation}
+
+Executando a otimização temos os seguintes valores ótimos.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Soluções ótimas encontradas}
+    \begin{tabular}{c|c|c|c|c}
+    \multicolumn{2}{c|}{Parâmetros de entrada} & \multicolumn{3}{|c}{Solução encontrada} \\\hline
+    Método utilizado    & ponto inicial & $x_1$                 & $x_2$         & $F_{aval}$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (0.2, 0.8)    & $$1.0e-04*-0.174$$    &  $-0.1069$    &   6.989e-05 \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminunc/\\Quasi-Newton \end{tabular}   & (0.2, 0.8)    & $$1.0e-06*0.1083$$    &  $0.1425$    &   5.035597e-07 \\\hline
+    \end{tabular}%
+  \label{tab23}%
+\end{table}%
+
+A execução no simulador, partindo do ponto inicial $x_1 = 0.2$ e $x_2 = 0.8$ tem o comportamento gráfico 
+representado inicialmente pela figura \ref{simulacao-23-0} e ao fim da simulação a convergência do sistema para o ponto de equilíbrio por \ref{simulacao-23-1}. 
+Mesmo embora tenha sido usado dois métodos determinísticos diferentes, a solução final dos dois são muito próximas, 
+sendo assim nos proximos casos usaremos prioritariamente o fiminsearch/simplex, pois ele apresentou um melhor tempo de resposta.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=21pc]{imagens/simulacao-23-0}
+\caption{Inicio da simulação do problema 2.3.}
+\label{simulacao-23-0}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=21pc]{imagens/simulacao-23-1}
+\caption{Fim da simulação do problema 2.3.}
+\label{simulacao-23-1}
+\end{center}
+\end{figure}
+
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - parte 2 - Problema 2.4}\label{sec224}
+Problema: Encontrar o ponto de equilíbrio para o sistema de equações com três variáveis.
+
+\begin{lstlisting}[frame=single, language=Matlab]
+xdot(1)=-x(2)+x(1)*x(3);
+xdot(2)=x(1)+x(2)*x(3);
+xdot(3)=-x(3)-x(1)^2+x(3)^2;
+\end{lstlisting}
+
+
+Solução: A função de avaliação \ref{equ6} é uma opção para otimizar o sistema para o seu ponto de equilíbrio.
+
+\begin{equation}
+    \begin{aligned}
+             F_{aval}(x_1,x_2, x_3) &= (max(x_1) - min(x_1)) \\
+                                    &+ (max(x_2) - min(x_2)) \\
+                                    &+ (max(x3) - min(x3))
+    \end{aligned}
+\label{equ6}
+\end{equation}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Soluções ótimas encontradas}
+    \begin{tabular}{c|c|c|c|c}
+    \multicolumn{2}{c|}{Parâmetros de entrada} & \multicolumn{3}{|c}{Solução encontrada} \\\hline
+    Método utilizado    & ponto inicial & $x_1$ & $x_2$ & $x_3$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (0.5, -2, -2) &  0    &  0    & 0.1541 \\\hline
+    %\begin{tabular}[x]{@{}c@{}}fminunc/\\Quasi-Newton \end{tabular}   & (0.5, -2, -2) &  0.033    &  0.2054    &  -0.1838 \\\hline
+      \end{tabular}%
+  \label{tab24}%
+\end{table}%
+
+Valores ótimos encontrados na simulação - A execução no simulador, partindo do ponto inicial $x_1 = 0.5$, $x_2 = -2$ e $x_3 = -2$, temos o comportamento gráfico 
+representado inicialmente pela figura \ref{simulacao-24-0} e ao fim da simulação por \ref{simulacao-24-1}.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=20pc]{imagens/simulacao-24-0}
+\caption{Inicio da simulação do problema 2.4.}
+\label{simulacao-24-0}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=20pc]{imagens/simulacao-24-1}
+\caption{Fim da simulação do problema 2.4.}
+\label{simulacao-24-1}
+\end{center}
+\end{figure}
+
+%Resultado da simulação $x_1 = 0.0000, x_2 = -0.0000, x_3 = 0.1541$.
+
+\subsection{Ponto de Equilíbrio Sistema de Equações - Problema  3}\label{sec3}
+
+No problema 3, temos um conjunto de sistemas de equações para encontrar o ponto de equilíbrio, 
+para tanto foi utilizado a mesma função de avaliação \ref{equ5}, usado para a solução do problema \ref{sec223}.
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.1}\label{sec31}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+\begin{equation}
+ \begin{cases}
+    \dot{u}_1 = u_2 \\
+    \dot{u}_2 = -\frac{L}{g}\sin(u_1) - \frac{k}{m}u_1
+ \end{cases}
+\label{equ7}
+\end{equation}
+
+Analisando o gráfico do sistema no pplane8 visto na figura \ref{4ex1}, 
+é possível identificar um possível ponto de equilíbrio nas proximidades do ponto onde $y=0$ e $x=0$. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=20pc]{imagens/4ex1}
+\caption{Gráfico do sistema no pplane8.}
+\label{4ex1}
+\end{center}
+\end{figure}
+
+Aplicando esse ponto como ponto de partida na otimização do sistema para encontrar os pontos de equilíbrios, temos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c|c|c|c}
+    \multicolumn{2}{c|}{Parâmetros de entrada} & \multicolumn{3}{|c}{Solução encontrada} \\\hline
+    Método utilizado    & ponto inicial & $u_1$                 & $u_2$         & $F_{aval}$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (0, 0)    & $0$    &  $0$    &   0 \\\hline
+      \end{tabular}%
+  \label{tab31}%
+\end{table}%
+
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema 3.2}\label{sec32}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação:
+
+\begin{equation}
+ \begin{cases}
+    \dot{u}_1 = \mu u_1 + u_2 - (u_1)^3 \\
+    \dot{u}_2 = -u_1
+ \end{cases}
+\label{equ7-1}
+\end{equation}
+
+Analisando o gráfico do sistema no pplane8 visto na figura \ref{4ex2}, 
+é possível identificar um possível ponto de equilíbrio nas proximidades do ponto onde $y=0$ e $x=0$. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=20pc]{imagens/4ex2-eq}
+\caption{Gráfico do sistema no pplane8.}
+\label{4ex2}
+\end{center}
+\end{figure}
+
+Aplicando esse ponto como ponto de partida na otimização do sistema para encontrar os pontos de equilíbrio, temos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c|c|c|c}
+    \multicolumn{2}{c|}{Parâmetros de entrada} & \multicolumn{3}{|c}{Solução encontrada} \\\hline
+    Método utilizado    & ponto inicial & $u_1$                 & $u_2$         & $F_{aval}$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (0, 0)    & $0$    &  $0$    &   0 \\\hline
+      \end{tabular}%
+  \label{tab32}%
+\end{table}%
+
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.3}\label{sec33}
+
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+\begin{equation}
+ \begin{cases}
+    \dot{x_1} = 2x_1 - x_2 + 3(x_1^2 - x_2^2) + 2x_1x_2\\
+    \dot{x_2} = x_1 - 3x_2 - 3(x_1^2 - x_2^2) + 3x_1x_2
+ \end{cases}
+\label{equ8}
+\end{equation}
+
+Analisando o gráfico do sistema no pplane8 visto na figura \ref{4ex3}, 
+é possível identificar um possível ponto de equilíbrio nas proximidades do ponto onde $x=-0.47$ e $y=-0.22$. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=20pc]{imagens/4ex3-3}
+\caption{Gráfico do sistema no pplane8.}
+\label{4ex3}
+\end{center}
+\end{figure}
+
+Aplicando esse ponto como ponto de partida na otimização do sistema para encontrar os pontos de equilíbrios, temos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c|c|c|c}
+    \multicolumn{2}{c|}{Parâmetros de entrada} & \multicolumn{3}{|c}{Solução encontrada} \\\hline
+    Método utilizado    & ponto inicial & $x_1$                 & $x_2$         & $F_{aval}$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (-0.47, -0.22)    & $-0.4661$    &  $ -0.2209$    &    0.0301 \\\hline
+      \end{tabular}%
+  \label{tab33}%
+\end{table}%
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.4}\label{sec34}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+\begin{equation}
+ \begin{cases}
+    \dot{x_1} = x_2 \\
+    \dot{x_2} = -a\sin(x_1 ) - bx_2 + \mu
+ \end{cases}
+\label{equ9}
+\end{equation}
+
+Analisando o gráfico do sistema no pplane8 visto na figura \ref{4ex4}, 
+é possível perceber que não existe um ponto de equilíbrio aparente, mesmo aumentando o intervalo (de -50 até 50) a ser considerado  na análise.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=20pc]{imagens/4ex4-5}
+\caption{Gráfico do sistema no pplane8.}
+\label{4ex4}
+\end{center}
+\end{figure}
+
+O melhor candidato possível para ter um ponto de equilíbrio está situado sobre a reta $y=0$, 
+aplicando um ponto qualquer dessa reta como ponto de partida na otimização do sistema para encontrar o possível ponto de equilíbrio temos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c|c|c|c}
+    \multicolumn{2}{c|}{Parâmetros de entrada} & \multicolumn{3}{|c}{Solução encontrada} \\\hline
+    Método utilizado    & ponto inicial & $x_1$                 & $x_2$         & $F_{aval}$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (10, 0)    & $12.8854$    &  $0.0005$    &  3.8649e+03 \\\hline
+      \end{tabular}%
+  \label{tab34}%
+\end{table}%
+
+O que não é um ponto de equilíbrio, dado o gráfico do resultado da simulação visto na figura \ref{simulacao-34-0},
+esse não é um sistema que é possível ser otimizado para o ponto de equilíbrio, apenas com as informações levantadas, 
+um estudo mais aprofundado seria necessário para concluir seu ponto de equilíbrio, ou da impossibilidade de existir tal ponto.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=20pc]{imagens/4ex4-simul}
+\caption{Fim da simulação do problema 3.4.}
+\label{simulacao-34-0}
+\end{center}
+\end{figure}
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.5}\label{sec35}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+\begin{equation}
+ \begin{cases}
+    \dot{Y_1} = -0.1Y_2 \\
+    \dot{Y_2} = -0.064Y_1
+ \end{cases}
+\label{equ10}
+\end{equation}
+
+Analisando o gráfico do sistema no pplane8 visto na figura \ref{4ex5}, 
+é possível identificar um possível ponto de equilíbrio nas proximidades do ponto onde $y=0$ e $x=0$. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=20pc]{imagens/4ex5-2}
+\caption{Gráfico do sistema no pplane8.}
+\label{4ex5}
+\end{center}
+\end{figure}
+
+Aplicando esse ponto como ponto de partida na otimização do sistema para encontrar os pontos de equilíbrios, temos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c|c|c|c}
+    \multicolumn{2}{c|}{Parâmetros de entrada} & \multicolumn{3}{|c}{Solução encontrada} \\\hline
+    Método utilizado    & ponto inicial & $Y_1$                 & $Y_2$         & $F_{aval}$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (0, 0)    & $0$    &  $0$    &   0 \\\hline
+      \end{tabular}%
+  \label{tab35}%
+\end{table}%
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.6}\label{sec36}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+\begin{equation}
+ \begin{cases}
+    \dot{\xi}_1 = \xi_1 + e^{-\xi_2} \\
+    \dot{\xi}_2 = -\xi_2
+ \end{cases}
+\label{equ11}
+\end{equation}
+
+Analisando o gráfico do sistema no pplane8 visto na figura \ref{4ex6}, 
+é possível identificar um possível ponto de equilíbrio nas proximidades do ponto onde $y=0$ e $x=-1$. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=20pc]{imagens/4ex6}
+\caption{Gráfico do sistema no pplane8.}
+\label{4ex6}
+\end{center}
+\end{figure}
+
+Aplicando esse ponto como ponto de partida na otimização do sistema para encontrar os pontos de equilíbrios, temos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c|c|c|c}
+    \multicolumn{2}{c|}{Parâmetros de entrada} & \multicolumn{3}{|c}{Solução encontrada} \\\hline
+    Método utilizado    & ponto inicial & $\xi_1$                 & $\xi_2$         & $F_{aval}$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (-1, 0)    & $-1$    &  $0$    &   0 \\\hline
+      \end{tabular}%
+  \label{tab36}%
+\end{table}%
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.7}\label{sec37}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+\begin{equation}
+ \begin{cases}
+    \dot{x_1} = 1 - x_2^2 \\
+    \dot{x_2} = -x_1^2
+ \end{cases}
+\label{equ12}
+\end{equation}
+
+Analisando o gráfico do sistema no pplane8 visto na figura \ref{4ex7}, 
+é possível identificar um possível ponto de equilíbrio nas proximidades do ponto onde $y=-1$ e $x=0$. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=20pc]{imagens/4ex7}
+\caption{Gráfico do sistema no pplane8.}
+\label{4ex7}
+\end{center}
+\end{figure}
+
+Aplicando esse ponto como ponto de partida na otimização do sistema para encontrar os pontos de equilíbrios, temos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c|c|c|c}
+    \multicolumn{2}{c|}{Parâmetros de entrada} & \multicolumn{3}{|c}{Solução encontrada} \\\hline
+    Método utilizado    & ponto inicial & $x_1$                 & $x_2$         & $F_{aval}$ \\\hline
+    \begin{tabular}[x]{@{}c@{}}fminsearch/\\simplex \end{tabular}   & (0, -1)    & $0$    &  $-1$    &   0 \\\hline
+      \end{tabular}%
+  \label{tab37}%
+\end{table}%  
+
+\section{Conclusão}\label{sec4}
+
+Os resultados encontrados para os problemas são valores ótimos, mesmo que locais, consistem em boas soluções para os problemas propostos.
+O uso das implementações do métodos de otimização do Matlab e do Toolbox de otimização se mostraram eficazes tanto para problemas simplórios de otimização,
+como para sistemas de equações mais complexas. 
+A ferramenta pplane8 também se mostrou muito importante para auxiliar e compreender o comportamento de determinados sistemas de equações, 
+guiando assim um caminho inicial para as buscas determinísticas, quando se tratar de problemas mais complexos. Podemos concluir então que o conjunto
+Matlab, Toolbox e Pplane8 são ferramentas satisfatórias no processo de otimização, podendo ser usado em diferentes gamas de problemas, aplicando diferentes tipos de 
+métodos, sempre com o objetivo de encontrar uma solução ótima para o problema estudado.
+
+
+\begin{thebibliography}{1}
+
+\bibitem{matlab}
+MATLAB,
+``The Linguage of Technical Computing.''
+{\bf} (Versão R2012a).
+
+\bibitem{pplane8}
+POLKING J. C. ,
+``PPLANE: Phase Plane of an Ordinary Differential Equation.'' {\it Rice Universit,}
+{\bf} (Versão 8).
+
+\end{thebibliography}
+
+\end{document}
+
+
+
+

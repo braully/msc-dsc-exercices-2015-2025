@@ -1,0 +1,703 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{graphics}
+%\usepackage{graphicx}
+\usepackage[dvips]{graphicx}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[dvips,colorlinks,bookmarksopen,bookmarksnumbered,citecolor=red,urlcolor=red]{hyperref}
+\usepackage{listings}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage[portuguese]{algorithm2e}
+
+\ifCLASSINFOpdf
+  \else
+\fi
+
+\hyphenation{Bi-blio-te-ca}
+
+
+\begin{document}
+\title{Projeto 2 - Tópicos em Controle e Automação - Processos de Otimização Aplicada}
+\author{Braully Rocha da Silva}
+\thanks{W. P. Calixto e-mail: wpcalixto@ieee.org}
+\thanks{Universidade Federal de Goiás - Escola de Engenharia Elétrica, Mecânica~e de Computação CEP 74510-010, Goiânia - Goiás, Brasil}% <-this % stops a space
+
+\maketitle
+
+\begin{abstract}
+Relatório do desenvolvimento do primeiro projeto da disciplina de processos de otimização, 
+que consiste em três problemas a serem otimizados com métodos heurísticos com o uso do matlab e suas ferramentas auxiliares
+descrevendo as soluções encontradas.
+\end{abstract}
+
+\begin{IEEEkeywords}
+processos de otimização, matlab, otimização, algoritmo genético
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\section{Introdução}\label{sec1}
+\IEEEPARstart{E}{ncontrar} soluções ótimas para um problema nem sempre  é uma tarefa fácil, 
+uma importante ferramenta para esse fim são  os processos de otimização utilizando métodos heurísticos.
+Neste relatório pretende-se apresentar uma análise de um conjunto de problemas de otimização e suas soluções ótimas,
+usando algoritmo genético, um método de busca heurístico, guiado por funções de avaliações específicas para cada problema
+- em suma, aplicando processos de otimização. \\
+
+%\pagebreak[4]
+\section{Metodologia}\label{sec2}
+
+Para cada problema apresentado  foi  desenvolvido uma  função de avaliação que implementada no Matlab[1],
+permitiu a aplicação do algoritmo genético, auxiliando assim a identificação de uma solução ótima para o problema originário.
+Neste trabalho o Matlab foi utilizado como ferramenta principal para executar a otimização,
+juntamente com o ele  o seu Toolbox de otimização (Optimization toolbox).
+Tambem uma implementação simples de um algoritmo genético, com seleção e mutação estocástica, foi utilizado para atacar a otimização da maioria dos problemas propostos.
+
+\section{Algoritmo Genético}\label{secintro3}
+Neste artigo foi utilizada uma implementação simplificada de um algoritmo genético com seleção e mutação estocásticas.
+Algoritmos genéticos são simulações computacionais análogas ao comportamento evolucionário de especeis na natureza.
+Em ambos os casos gerações sucessivas vão sendo aprimoradas através da seleção, cruzamento e mutação dos genes dos indivíduos da população.
+
+
+Em uma definição formal mais consolidada de acordo com [4] temos que:  ``Um  Algoritmo Genético é um
+processo interativo que mantém uma população de estruturas que são
+soluções candidatas no domínio especificado. Durante cada incremento
+temporal (chamado de geração), a estrutura na população atual é
+qualificada por sua efetividade como solução dominante, e com base
+nestas qualificações, uma nova população de soluções candidatas é
+formada usando operadores genéticos específicos como reprodução
+(seleção), cruzamento (recombinação) e mutação''.
+
+
+\subsection{Parametros do Algoritmo Genético}\label{secintro31}
+
+Na implementação utilizada neste  trabalho, foi utilizado como parâmetros de entrada para o algoritmo genético os seguintes elementos:
+\begin{itemize}
+    \item[-] Função de avaliação do problema;
+    \item[-] Tamanho da população;
+    \item[-] Numero de gerações;
+    \item[-] Limite estocástico da mutação;
+    \item[-] Limite do espaço de busca.
+\end{itemize}
+
+\subsection{Algoritmo Genético}\label{secintro32}
+
+A seguir uma descrição algoritma em alto nível, do processo de otimização feito pelo algoritmo genético.
+
+\begin{algorithm}
+\SetAlgoLined
+\Entrada{Função de avaliação}
+\Saida{Solução otimizada}
+\Inicio{
+Gerar popula\c{c}\~ao inicial\;
+\Repita{Melhor indivíduo da população ser uma solu\c{c}\~ao ótima OU gera\c{c}\~ao máxima atingida}{
+Avaliar os indivíduos da população\;
+Seleção dos pais da proxima geração\;
+Cruzamento dos pais e geração de novos indivíduos\;
+Mutação dos novos indivíduos\;
+Colocar melhor indivíduo da geração anterior na população\;
+\uIf{entendeu}{
+vá para o próximo\;
+próximo se torna o atual\;}
+\Else{volte ao início da seção\;}
+}
+}
+\caption{Visão geral da implementação do algoritmo genético utilizado.}
+\end{algorithm}
+
+\section{Problemas de otimização}
+Na seguinte seção, iremos explorar 3 problemas de otimização, alguns contendo subdivisões em problemas menores.
+
+\subsection{Equação do Segundo Grau - Problema 1}\label{sec21}
+\vspace{10pt}
+
+O problema de encontrar as raízes de uma equação do segundo grau pode ser facilmente enfrentado como um problema de otimização, 
+uma boa escolha de função de avaliação para otimizar o problema (encontrar as raízes) é dada pela função \ref{equ3}, 
+a função de avaliação qualificará melhor a solução quando as raízes forem valores distintos,
+ao passo que qualificará pior quando as raízes forem iguais.
+
+
+\begin{equation}
+F_{aval}(x_1,x_2) = \frac{|ax_1 + bx_1 + c| + |ax_2 + bx_2 + c|}{|x_1 - x_2|}
+\label{equ3}
+\end{equation}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Soluções ótimas encontradas}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Seleção & Estocástica \\\hline 
+      Cruzamento & Estocástica \\\hline 
+      Mutação & Estocástica \\\hline 
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{Solução encontrada} \\\hline
+      $x_1$            &           $x_2$  & $F_{aval}$ \\\hline
+      3.96651555104485 &  1.0075614196697 &  0.041217 \\\hline
+    \end{tabular}%
+  \label{tab11}%      
+\end{table}%
+ 
+ 
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=21pc]{imagens/ex1}
+    \caption{Comportamento da otimização do problema.}
+    \label{execucao-11}
+  \end{center}
+\end{figure}
+ 
+\subsection{Problema 2}\label{sec22}
+
+Desenvolver a função de avaliação e encontrar os valores ótimos, utilizando de métodos heurísticos.
+
+\subsubsection{Corte do Barbante - Problema 2.1}\label{sec221}
+Problema: Dado um fio de barbante de $10m$ de comprimento,
+cortando em dois pedaços, com esses pedaços é possível construir um quadrado e um círculo respectivamente.
+Determine o valor de corte para que o quadrado e o círculo juntos produzam a menor área possível.
+
+Solução: Supondo o corte de tamanho $y$ em um fio de barbante de $10m$, usando o pedaço $y$ para construir um quadrado e $10m-y$ para construir uma circunferência,
+podemos otimizar esse corte $y$ para que a área total do quadrado e da circunferência seja a menor possível,
+para tanto, supomos $x_1$ o tamanho da base do quadrado e $x_2$ o raio da circunferência.
+A área do quadrado é calculada pela base multiplicada pela altura, como em um quadrado temos a base igual a altura,
+podemos inferir a área do quadrado baseada no valor de $x_1$: $A_{quadrado} = x_1.x_1 = (x_1)^2$
+A área da circunferência é calculada pela multiplicação do raio ao quadrado por $\pi$, aplicando a fórmula da área, temos  $A_{circuferencia} = \pi (x_2)^2$
+
+A área total dada pela fórmula \ref{equ4} deve ser minimizada, para tanto construímos um sistema de equações com a seguinte restrição.
+
+\begin{equation}
+A_{total} = A_{quadrado}(x_1) + A_{circunferência}(x_2)
+\label{equ4}
+\end{equation}
+
+\begin{equation}
+F_{aval}(x_1,x_2) = A_{total} = (x_1)^2 + \pi .(x_2)^2 \\
+\label{equ4-1}
+\end{equation}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Soluções ótimas encontradas}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{Solução encontrada} \\\hline
+      $x_1$            &           $x_2$  & $F_{aval}$ \\\hline
+      1.3998 &   0.7002 &  3.499139e+00 \\\hline
+    \end{tabular}%
+  \label{tab21}%
+\end{table}%
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=21pc]{imagens/ex2}
+    \caption{Comportamento da função de avaliação aplicada ao melhor indivíduos ao longo das gerações.}
+    \label{execucao-21}
+  \end{center}
+\end{figure}
+
+Encontrado os valores da base do quadrado ($x_1$) e o raio da circunferência ($x_2$) é possível deduzirmos o ponto de corte do barbante em $5,5994m$,
+e construir o quadrado com $5,5994m$ e a circunferência com $4,4006m$ - que é uma solução ótima para esse problema.
+
+\subsubsection{Perímetro de Retângulo - Problema 2.2}\label{sec222}
+Problema: Encontrar as dimensões de um retângulo com o perímetro de $100m$ que tenha a maior área possível.
+
+Solução: O perímetro de um retângulo de base $x_1$ e altura $x_2$, é dado pela relação $p = 2x_1 + 2x_2$, e a área deste mesmo retângulo é dado pela relação $A_{retangulo} = x_1.x_2$.
+Uma vez que o perímetro do retângulo para o problema analisado é fixado em $100m$ ($p = 100m$),
+uma função de avaliação que pode ser usada para encontrar as dimensões de $x_1$ e $x_2$ com a maior área possível é: 
+
+$$    
+F_{aval}(x_1, x_2) = \frac{1}{x_1.x_2}\\
+$$
+
+Executando a simulação, otimizando o problema através da minimização da função de avaliação,
+chegamos muito próximo aos valores ótimos para obter a maior área possível com a base de valor $25,008m$ ($x_1 \approx 25$), e de altura também $24,991m$ ($x_2 \approx 25)$.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Soluções ótimas encontradas}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{Solução encontrada} \\\hline
+      $x_1$            &           $x_2$  & $F_{aval}$ \\\hline
+      2.500853e+01 &   2.499197e+01 &  1.599968e-01 \\\hline
+    \end{tabular}%
+  \label{tab22}%
+\end{table}%
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=21pc]{imagens/ex2}
+    \caption{Comportamento da otimização do problema.}
+    \label{execucao-22}
+  \end{center}
+\end{figure}
+
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema 2.3}\label{sec223}
+Problema: Encontrar o ponto de equilíbrio para o sistema de equações com duas variáveis.
+
+\begin{lstlisting}[frame=single, language=Matlab]
+x1(1) = 0.2; % Condições iniciais
+x2(1) = 0.8; % Condições iniciais
+t= 0:1:100; % Instantes a considerar
+for ia = 1:size(t,2)-1
+  x1(ia+1)=0.9*x2(ia);
+  x2(ia+1)=-x1(ia)-0.1*x2(ia);
+end
+\end{lstlisting}
+
+Solução: A função de avaliação \ref{equ5} é uma opção para otimizar o sistema para o seu ponto de equilíbrio.
+
+\begin{equation}
+    F_{aval}(x_1,x_2) = (max(x_1) - min(x_1)) + (max(x_2) - min(x_2))
+\label{equ5}
+\end{equation}
+
+Executando a otimização temos os seguintes valores ótimos.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Soluções ótimas encontradas}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Seleção & Estocástica \\\hline 
+      Cruzamento & Estocástica \\\hline 
+      Mutação & Estocástica \\\hline 
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{Solução encontrada} \\\hline
+      $x_1$            &           $x_2$  & $F_{aval}$ \\\hline
+      0.00944864730401968 &  0.00620176526146104 &  0.038099 \\\hline
+    \end{tabular}%
+  \label{tab23}%
+\end{table}%
+
+A execução no simulador, tem o comportamento gráfico 
+representado pela figura \ref{simulacao-23-0}.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=21pc]{imagens/simulacao-23-0}
+\caption{Inicio da simulação do problema 2.3.}
+\label{simulacao-23-0}
+\end{center}
+\end{figure}
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - parte 2 - Problema 2.4}\label{sec224}
+Problema: Encontrar o ponto de equilíbrio para o sistema de equações com três variáveis.
+
+\begin{lstlisting}[frame=single, language=Matlab]
+xdot(1)=-x(2)+x(1)*x(3);
+xdot(2)=x(1)+x(2)*x(3);
+xdot(3)=-x(3)-x(1)^2+x(3)^2;
+\end{lstlisting}
+
+
+Solução: A função de avaliação \ref{equ6} é uma opção proposta para otimizar o sistema para o seu ponto de equilíbrio.
+
+\begin{equation}
+    \begin{aligned}
+             F_{aval}(x_1,x_2, x_3) &= (max(x_1) - min(x_1)) \\
+                                    &+ (max(x_2) - min(x_2)) \\
+                                    &+ (max(x3) - min(x3))
+    \end{aligned}
+\label{equ6}
+\end{equation}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Soluções ótimas encontradas}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Seleção & Estocástica \\\hline 
+      Cruzamento & Estocástica \\\hline 
+      Mutação & Estocástica \\\hline 
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c|c}
+    \multicolumn{4}{c}{Solução encontrada} \\\hline
+      $x_1$            &           $x_2$  & $x_3$ &  $F_{aval}$ \\\hline
+      -0.00135743180023529 &  -0.0057915641962103 & -0.510276518200303 &  52.8166 \\\hline
+    \end{tabular}%
+  \label{tab24}%
+\end{table}%
+
+Valores ótimos encontrados na simulação, temos o comportamento gráfico representado inicialmente pela figura \ref{simulacao-24-0}.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=20pc]{imagens/simulacao-24-0}
+\caption{Inicio da simulação do problema 2.4.}
+\label{simulacao-24-0}
+\end{center}
+\end{figure}
+
+%Resultado da simulação $x_1 = 0.0000, x_2 = -0.0000, x_3 = 0.1541$.
+
+\subsection{Ponto de Equilíbrio Sistema de Equações - Problema  3}\label{sec3}
+
+No problema 3, temos um conjunto de sistemas de equações para encontrar o ponto de equilíbrio, 
+para tanto foi utilizado a mesma função de avaliação \ref{equ5}, usada para alcançar a solução do problema \ref{sec223}.
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.1}\label{sec31}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+\begin{equation}
+ \begin{cases}
+    \dot{u}_1 = u_2 \\
+    \dot{u}_2 = -\frac{L}{g}\sin(u_1) - \frac{k}{m}u_1
+ \end{cases}
+\label{equ7}
+\end{equation}
+
+Aplicando a otimização com o algoritmo genético tempos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Seleção & Estocástica \\\hline 
+      Cruzamento & Estocástica \\\hline 
+      Mutação & Estocástica \\\hline 
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{Solução encontrada} \\\hline
+     $u_1$       & $u_2$         & $F_{aval}$ \\\hline
+     $-0.0313873490376896$    &  $1.42854420819172$    &   $352.1879$ \\\hline
+    \end{tabular}%
+  \label{tab31}%
+\end{table}%
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[width=20pc]{imagens/simulacao-31-0}
+  \label{simulacao-31-0}
+  \end{center}
+\end{figure}
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema 3.2}\label{sec32}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação:
+
+\begin{equation}
+ \begin{cases}
+    \dot{u}_1 = \mu u_1 + u_2 - (u_1)^3 \\
+    \dot{u}_2 = -u_1
+ \end{cases}
+\label{equ7-1}
+\end{equation}
+
+Aplicando a otimização com o algoritmo genético tempos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Seleção & Estocástica \\\hline 
+      Cruzamento & Estocástica \\\hline 
+      Mutação & Estocástica \\\hline 
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{Solução encontrada} \\\hline
+     $u_1$       & $u_2$         & $F_{aval}$ \\\hline
+     $-0.0838163697309344$    &  $0.30166131703578$    &   $105.4876$ \\\hline
+    \end{tabular}%
+  \label{tab32}%
+\end{table}%
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[width=20pc]{imagens/simulacao-32-0}
+  \label{simulacao-32-0}
+  \end{center}
+\end{figure}
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.3}\label{sec33}
+
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+\begin{equation}
+ \begin{cases}
+    \dot{x_1} = 2x_1 - x_2 + 3(x_1^2 - x_2^2) + 2x_1x_2\\
+    \dot{x_2} = x_1 - 3x_2 - 3(x_1^2 - x_2^2) + 3x_1x_2
+ \end{cases}
+\label{equ8}
+\end{equation}
+
+Aplicando a otimização com o algoritmo genético tempos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Seleção & Estocástica \\\hline 
+      Cruzamento & Estocástica \\\hline 
+      Mutação & Estocástica \\\hline 
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{Solução encontrada} \\\hline
+     $x_1$       & $x_2$         & $F_{aval}$ \\\hline
+     $-0.467640522548516$    &  $-0.24863511439077$    &   $3.0368$ \\\hline
+    \end{tabular}%
+  \label{tab32}%
+\end{table}%
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[width=20pc]{imagens/simulacao-33-0}
+  \label{simulacao-33-0}
+  \end{center}
+\end{figure}
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.4}\label{sec34}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+\begin{equation}
+ \begin{cases}
+    \dot{x_1} = x_2 \\
+    \dot{x_2} = -a\sin(x_1 ) - bx_2 + \mu
+ \end{cases}
+\label{equ9}
+\end{equation}
+
+Aplicando a otimização com o algoritmo genético tempos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Seleção & Estocástica \\\hline 
+      Cruzamento & Estocástica \\\hline 
+      Mutação & Estocástica \\\hline 
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{Solução encontrada} \\\hline
+     $x_1$       & $x_2$         & $F_{aval}$ \\\hline
+     $0.596049587441946$    &  $-0.27027865026085$    &   $3864.3274$ \\\hline
+    \end{tabular}%
+  \label{tab32}%
+\end{table}%
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[width=20pc]{imagens/simulacao-34-0}
+  \label{simulacao-34-0}
+  \end{center}
+\end{figure}
+
+O que não é um ponto de equilíbrio, dado o gráfico do resultado da simulação visto na figura \ref{simulacao-34-0},
+esse não é um sistema que é possível ser otimizado para o ponto de equilíbrio, apenas com as informações levantadas, 
+um estudo mais aprofundado seria necessário para concluir seu ponto de equilíbrio, ou da impossibilidade de existir tal ponto.
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.5}\label{sec35}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+ 
+
+\begin{equation}
+ \begin{cases}
+    \dot{Y_1} = -0.1Y_2 \\
+    \dot{Y_2} = -0.064Y_1
+ \end{cases}
+\label{equ10}
+\end{equation}
+
+Aplicando a otimização com o algoritmo genético tempos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Seleção & Estocástica \\\hline 
+      Cruzamento & Estocástica \\\hline 
+      Mutação & Estocástica \\\hline 
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{Solução encontrada} \\\hline
+     $Y_1$       & $Y_2$         & $F_{aval}$ \\\hline
+     $-0.675527946002184$    &  $-0.547360344590547$    &   $112.1431$ \\\hline
+    \end{tabular}%
+  \label{tab32}%
+\end{table}%
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[width=20pc]{imagens/simulacao-35-0}
+  \label{simulacao-35-0}
+  \end{center}
+\end{figure}
+
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.6}\label{sec36}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+\begin{equation}
+ \begin{cases}
+    \dot{\xi}_1 = \xi_1 + e^{-\xi_2} \\
+    \dot{\xi}_2 = -\xi_2
+ \end{cases}
+\label{equ11}
+\end{equation}
+
+Aplicando a otimização com o algoritmo genético tempos o seguinte resultado. 
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Seleção & Estocástica \\\hline 
+      Cruzamento & Estocástica \\\hline 
+      Mutação & Estocástica \\\hline 
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{Solução encontrada} \\\hline
+     $\dot{\xi}_1$       & $\dot{\xi}_2$         & $F_{aval}$ \\\hline
+     $-10.7303545055715$    &  $-3.71049378670856$    &   $16722606413607.25$ \\\hline      
+    \end{tabular}%
+  \label{tab32}%
+\end{table}%
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[width=20pc]{imagens/simulacao-36-0}
+  \label{simulacao-36-0}
+  \end{center}
+\end{figure}
+
+\subsubsection{Ponto de Equilíbrio Sistema de Equações - Problema  3.7}\label{sec37}
+Desenvolver a função de avaliação e encontrar o ponto de equilíbrio da seguinte equação.
+
+\begin{equation}
+ \begin{cases}
+    \dot{x_1} = 1 - x_2^2 \\
+    \dot{x_2} = -x_1^2
+ \end{cases}
+\label{equ12}
+\end{equation}
+
+Aplicando a otimização com o algoritmo genético tempos o seguinte resultado.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ponto de equilíbrio}
+    \begin{tabular}{c|c}
+    \multicolumn{2}{c}{Parâmetros de entrada} \\\hline
+      Método utilizado    & Algoritmo Genético \\\hline
+      Seleção & Estocástica \\\hline 
+      Cruzamento & Estocástica \\\hline 
+      Mutação & Estocástica \\\hline 
+      Tamanho da População &  20 \\\hline 
+      Número Máximo de  Gerações & 50 \\\hline
+    \end{tabular}%
+       
+    \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{Solução encontrada} \\\hline
+     $\dot{x_1}$       & $\dot{xi_2}$         & $F_{aval}$ \\\hline
+     $-10.3922432769679$    &  $-22.3502695242756$    &   $16753.033$ \\\hline      
+    \end{tabular}%
+  \label{tab32}%
+\end{table}%
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[width=20pc]{imagens/simulacao-37-0}
+  \label{simulacao-37-0}
+  \end{center}
+\end{figure}
+\section{Conclusão}\label{sec4}
+
+Embora o algoritmo genético empregado neste trabalho seja uma implementação simples,
+mesmo assim apresentou bons resultados para os diferentes tipos de problemas apresentados,
+demonstrando a versatilidade e a robustez desse metódo heurístico aplicado a diferentes tipos de problema.
+
+Os resultados encontrados para os problemas são valores ótimos, ou muito proximos destes, consistem em boas soluções para os problemas propostos.
+Assim como os algoritimos determinísticos, os algoritmos genéticos também são ferramentas eficazes tanto para problemas simplórios de otimização,
+como para sistemas de equações mais complexas, podendo ser usado em diferentes gamas de problemas.
+
+Grandes variações no comportamento e melhoramento do algoritmo ainda pode ser alcançado aplicando diferentes estratégias na seleção,
+no cruzamento e na mutação, sempre com o objetivo de encontrar uma solução ótima para o problema estudado.
+
+Por mais, os algoritmos genéticos constituem uma excelente ferramenta de otimização.
+
+
+\begin{thebibliography}{1}
+
+\bibitem{matlab}
+MATLAB,
+``The Linguage of Technical Computing.''
+{\bf} (Versão R2012a).
+
+\bibitem{pplane8}
+POLKING J. C. ,
+``PPLANE: Phase Plane of an Ordinary Differential Equation.'' {\it Rice Universit,}
+{\bf} (Versão 8).
+
+\bibitem{fund}
+MIRANDA M. N. ,
+``Algoritmos Genéticos: Fundamentos e Aplicações.'' {\it UFRJ,}
+{\bf} (http://www.nce.ufrj.br/GINAPE/VIDA/alggenet.htm).
+
+\bibitem{gen}
+GREFENSTETTE J. ,
+``Genesis.'' {\it Navy Center for Applied Research In Artificial Intelligence,}
+{\bf} (1993).
+
+\end{thebibliography}
+
+\end{document}
+
+
+
+

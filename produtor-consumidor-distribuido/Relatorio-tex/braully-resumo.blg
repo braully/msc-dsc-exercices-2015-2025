@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: braully-resumo.aux
+The style file: sbc.bst
+Database file #1: braully-bib.bib
+Warning--empty year in JavaRMI
+Warning--empty year in JavaDoc
+You've used 3 entries,
+            1935 wiz_defined-function locations,
+            487 strings with 4181 characters,
+and the built_in function-call counts, 874 in all, are:
+= -- 90
+> -- 32
+< -- 2
++ -- 11
+- -- 10
+* -- 54
+:= -- 173
+add.period$ -- 12
+call.type$ -- 3
+change.case$ -- 19
+chr.to.int$ -- 2
+cite$ -- 5
+duplicate$ -- 34
+empty$ -- 54
+format.name$ -- 13
+if$ -- 164
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 2
+newline$ -- 20
+num.names$ -- 9
+pop$ -- 17
+preamble$ -- 1
+purify$ -- 20
+quote$ -- 0
+skip$ -- 23
+stack$ -- 0
+substring$ -- 36
+swap$ -- 1
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 16
+warning$ -- 2
+while$ -- 6
+width$ -- 0
+write$ -- 41
+(There were 2 warnings)

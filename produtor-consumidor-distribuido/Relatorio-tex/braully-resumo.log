@@ -1,0 +1,375 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.9.23)  11 MAY 2015 14:40
+entering extended mode
+ %&-line parsing enabled.
+**braully-resumo.tex
+(./braully-resumo.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size12.clo
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf-texlive/tex/latex/filecontents/filecontents.sty
+Package: filecontents 2009/03/17 v1.2 Create an external file from within a LaT
+eX document
+)
+(./sbc-template.sty
+Package: sbc-template 2001/06/09
+ (/usr/share/texmf-texlive/tex/latex/geometry/geometry.sty
+Package: geometry 2008/12/21 v4.2 Page Geometry
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in pdf mode detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+)
+\Gm@cnth=\count87
+\Gm@cntv=\count88
+\c@Gm@tempcnt=\count89
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@dimlist=\toks15
+) (./caption2.sty
+Package: caption2 2002/08/03 v2.1 Customising captions (AS)
+\captionmargin=\dimen107
+\captionwidth=\dimen108
+\captionindent=\dimen109
+Package caption2 Info: Running in caption2 v2.0 compatibility mode on input lin
+e 147.
+\captionlinewidth=\dimen110
+)
+(/usr/share/texmf-texlive/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+\c@instn=\count90
+ (./titlesec.sty
+Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
+\ttl@box=\box26
+\beforetitleunit=\skip43
+\aftertitleunit=\skip44
+\ttl@plus=\dimen111
+\ttl@minus=\dimen112
+\ttl@toksa=\toks16
+\titlewidth=\dimen113
+\titlewidthlast=\dimen114
+\titlewidthfirst=\dimen115
+))
+(/usr/share/texmf-texlive/tex/latex/listings/listings.sty
+\lst@mode=\count91
+\lst@gtempboxa=\box27
+\lst@token=\toks17
+\lst@length=\count92
+\lst@currlwidth=\dimen116
+\lst@column=\count93
+\lst@pos=\count94
+\lst@lostspace=\dimen117
+\lst@width=\dimen118
+\lst@newlines=\count95
+\lst@lineno=\count96
+\lst@maxwidth=\dimen119
+
+(/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count97
+\lst@skipnumbers=\count98
+\lst@framebox=\box28
+)
+(/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
+\Gread@gobject=\count99
+))
+\Gin@req@height=\dimen120
+\Gin@req@width=\dimen121
+)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+Package: babel 2008/07/06 v3.8l The Babel package
+
+(/usr/share/texmf-texlive/tex/generic/babel/portuges.ldf
+Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
+
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def
+File: babel.def 2008/07/06 v3.8l Babel common definitions
+\babel@savecnt=\count100
+\U@D=\dimen122
+)
+
+Package babel Warning: No hyphenation patterns were loaded for
+(babel)                the language `Portuguese'
+(babel)                I will use the patterns loaded for \language=0 instead.
+
+\l@portuges = a dialect from \language0
+\l@brazil = a dialect from \language\l@portuges 
+Package babel Info: Making " an active character on input line 145.
+)) (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks18
+\inpenc@posthook=\toks19
+
+(/usr/share/texmf-texlive/tex/latex/base/latin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+)) (./braully-resumo.aux)
+\openout1 = `braully-resumo.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 20.
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+*geometry auto-detecting driver*
+*geometry detected driver: pdftex*
+-------------------- Geometry parameters
+paper: a4paper
+landscape: --
+twocolumn: --
+twoside: --
+asymmetric: --
+h-parts: 85.35826pt, 426.79135pt, 85.35826pt
+v-parts: 99.58464pt, 674.33032pt, 71.13188pt
+hmarginratio: --
+vmarginratio: --
+lines: --
+heightrounded: --
+bindingoffset: 0.0pt
+truedimen: --
+includehead: --
+includefoot: --
+includemp: --
+driver: pdftex
+-------------------- Page layout dimensions and switches
+\paperwidth  597.50787pt
+\paperheight 845.04684pt
+\textwidth  426.79135pt
+\textheight 674.33032pt
+\oddsidemargin  13.08827pt
+\evensidemargin 13.08827pt
+\topmargin  -9.68535pt
+\headheight 12.0pt
+\headsep    25.0pt
+\footskip   30.0pt
+\marginparwidth 44.0pt
+\marginparsep   10.0pt
+\columnsep  10.0pt
+\skip\footins  10.8pt plus 4.0pt minus 2.0pt
+\hoffset 0.0pt
+\voffset 0.0pt
+\mag 1000
+
+(1in=72.27pt, 1cm=28.45pt)
+-----------------------
+\c@lstlisting=\count101
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count102
+\scratchdimen=\dimen123
+\scratchbox=\box29
+\nofMPsegments=\count103
+\nofMParguments=\count104
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count105
+\MPscratchDim=\dimen124
+\MPnumerator=\count106
+\everyMPtoPDFconversion=\toks21
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <16> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 22.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <16> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 22.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 22.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 22.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 22.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 22.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <13> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 32.
+ <arquitetura-cliente-servidor.png, id=1, 454.69875pt x 343.2825pt>
+File: arquitetura-cliente-servidor.png Graphic file (type png)
+
+<use arquitetura-cliente-servidor.png>
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 59.
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 59.
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./arquitetura-cliente-serv
+idor.png (PNG copy)>]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 74.
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+(/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 82.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 82.
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <6> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 82.
+
+Underfull \hbox (badness 1331) in paragraph at lines 110--115
+\OT1/ptm/m/n/12 serir no \OT1/ptm/m/it/12 buffer\OT1/ptm/m/n/12 , se tiver suce
+sso ele ir[]a aguardar um tempo aleat[]orio en-tre 0 e
+ []
+
+[2]
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 171.
+
+ (/usr/share/texmf-texlive/tex/latex/psnfss/omlptm.fd
+File: omlptm.fd 
+)
+LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <6> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 171.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 171.
+ [3]
+LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <6> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 187.
+
+<arquitetura-cliente-servidor-mensagens.png, id=21, 557.08125pt x 571.13374pt>
+File: arquitetura-cliente-servidor-mensagens.png Graphic file (type png)
+
+<use arquitetura-cliente-servidor-mensagens.png>
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 242.
+ [4]
+<rmiregistry.png, id=25, 573.14125pt x 22.0825pt>
+File: rmiregistry.png Graphic file (type png)
+ <use rmiregistry.png>
+<executar.png, id=26, 467.7475pt x 23.08624pt>
+File: executar.png Graphic file (type png)
+ <use executar.png>
+<instanciar.png, id=27, 785.93625pt x 594.22pt>
+File: instanciar.png Graphic file (type png)
+ <use instanciar.png>
+<teste-simples.png, id=28, 539.01375pt x 419.5675pt>
+File: teste-simples.png Graphic file (type png)
+ <use teste-simples.png>
+[5 <./arquitetura-cliente-servidor-mensagens.png (PNG copy)> <./rmiregistry.png
+ (PNG copy)> <./executar.png (PNG copy)>]
+<cons-intensivo.png, id=32, 826.08624pt x 623.32875pt>
+File: cons-intensivo.png Graphic file (type png)
+
+<use cons-intensivo.png>
+<cons-intensivo-console.png, id=33, 433.62pt x 418.56375pt>
+File: cons-intensivo-console.png Graphic file (type png)
+
+<use cons-intensivo-console.png> [6 <./instanciar.png (PNG copy)> <./teste-simp
+les.png (PNG copy)>] <prod-intensiva.png, id=37, 787.94376pt x 595.22375pt>
+File: prod-intensiva.png Graphic file (type png)
+
+<use prod-intensiva.png>
+<prod-intensiva-console.png, id=38, 726.715pt x 416.55624pt>
+File: prod-intensiva-console.png Graphic file (type png)
+
+<use prod-intensiva-console.png>
+<prod-intensiva-console-2.png, id=39, 723.70375pt x 434.62375pt>
+File: prod-intensiva-console-2.png Graphic file (type png)
+
+<use prod-intensiva-console-2.png>
+
+LaTeX Warning: Overwriting file `./braully-bib.bib'.
+
+\openout15 = `braully-bib.bib'.
+
+
+(./braully-resumo.bbl [7 <./cons-intensivo.png (PNG copy)> <./cons-intensivo-co
+nsole.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 10--16
+\OT1/pcr/m/n/12 com / javase / tutorial / essential / concurrency / syncmeth . 
+html$\OT1/ptm/m/n/12 .
+ []
+
+) [8 <./prod-intensiva.png (PNG copy)> <./prod-intensiva-console.png (PNG copy)
+>] [9 <./prod-intensiva-console-2.png (PNG copy)>] (./braully-resumo.aux) ) 
+Here is how much of TeX's memory you used:
+ 4214 strings out of 495061
+ 56150 string characters out of 1182621
+ 162927 words of memory out of 3000000
+ 7329 multiletter control sequences out of 15000+50000
+ 27050 words of font info for 51 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 30i,8n,40p,316b,1589s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/us
+r/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fon
+ts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmsy6.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb></usr
+/share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-texl
+ive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/
+times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></
+usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
+Output written on braully-resumo.pdf (9 pages, 582043 bytes).
+PDF statistics:
+ 80 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+

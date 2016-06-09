@@ -1,0 +1,387 @@
+\documentclass[12pt]{article}
+\usepackage{filecontents}
+\usepackage{sbc-template}
+\usepackage{listings}
+\usepackage{graphicx,url}
+
+\usepackage[brazil]{babel}   
+\usepackage[latin1]{inputenc}  
+
+
+     
+\sloppy
+
+\title{Produtor e Consumidor Distribuído com \textit{Buffer} Limitado}
+
+\author{Braully Rocha da Silva\inst{1}}
+
+\address{Instituto de Informática -- Universidade Federal de Goiás (UFG)}
+
+\begin{document} 
+
+\maketitle
+
+% \begin{resumo} 
+% 
+% \end{resumo}
+
+
+%\section{Pontos relevantes}
+
+
+\section{Introdução}
+
+Este trabalho apresenta uma proposta de implementação para o problem do Produtor e Consumidor Distribuído com \textit{Buffer} Limitado.
+
+
+\section{Problema}
+Processos compartilham um \textit{buffer} de tamanho fixo com N posições,
+processos que produzem mensagens e inserem no \textit{buffer} são chamados de produtores,
+processo que retiram mensagens do \textit{buffer} são chamados de consumidores.
+
+``A relação produtor-consumidor ocorre em sistemas concorrentes e o problema se resume em administrar o \textit{buffer} que tem tamanho limitado.
+Se o \textit{buffer} está cheio, o produtor deve se bloquear, se o \textit{buffer} está vazio, o consumidor deve se bloquear``\cite{toscani2003sistemas}.
+
+Dado a definição do problema, transportando para um cenário distribuído, onde os processos estarão distribuídos,
+adicionamos uma complexidade extra a esse tradicional problema de concorrência. 
+Para tanto os processos precisam se comunicar e interagir com o \textit{buffer} através da rede, em um tipíco sistema distribuído.
+
+
+
+
+\section{Arquitetura Utilizada}
+
+A arquitetura performada para o problema do produtor-consumidor distribuído é a Cliente-Servidor.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\textwidth]{arquitetura-cliente-servidor.png}
+  \caption{Arquitetura Cliente Servidor.}
+  \label{fig:arq}
+\end{figure}
+
+Conforme visto na figura ~\ref{fig:arq} o \textit{Buffer} Limitado será um processo servidor, 
+ao passo que os Consumidores e os Produtores serão os clientes.
+
+\subsection{Consumidor}
+
+O Consumidor é criado por uma aplicação de configuração, neste momento o consumidor deve saber as informações de localização do \textit{buffer} distribuído,
+para que este possa realizar as chamadas remotas. O Consumidor deve verificar se o \textit{buffer} está vazio antes de tentar realizar uma retirada de dados,
+caso o \textit{buffer} esteja vazio o consumidor irá se bloquear por um tempo e esperar que mais dados sejam produzidos. Caso o consumidor tente retirar dados do \textit{buffer}
+vazio, este irá informar um erro de \textit{BufferVazio}, para que o consumidor tente novamente mais tarde.
+
+No pseudocódigo ~\ref{code:cons} é demonstrado o ciclo de trabalho do consumidor, enquanto um ''fim`` não for explicitamente sinalizado o consumidor irá constantemente verificar se o \textit{buffer} remoto não está vazio,
+se tiver elementos ele irá tentar remover do \textit{buffer}, se tiver sucesso ele irá aguardar um tempo aleatório entre 0 e \verb'TEMPO_MAXIMO_ESPERA_ENTRE_CONSUMOS' segundos, caso não tenha elementos no \textit{buffer}
+o consumidor irá esperar entre 0 e \verb'TEMPO_MAXIMO_ESPERA_PRODUCAO' segundos para poder tentar novamente. Caso entre a verificação de existência de elementos no \textit{buffer} e sua remoção o \textit{buffer} tenha ficado vazio,
+o \textit{buffer} poderá retornar uma exceção do tipo \textit{BufferVazio}, neste caso o consumidor irá capturar o erro e aguardar o mesmo tempo que ele aguardaria se não existe elementos, tentando novamente após esse tempo.
+
+
+
+\lstset{language=Java, caption={Ciclo de Trabalho do Consumidor}, label=code:cons}
+\begin{lstlisting}[frame=single, basicstyle=\tiny]
+while (!fim) {
+    try {
+	if (!referenciaRemotaBuffer.isVazio()) {
+	    Character removerDado = referenciaRemotaBuffer.removerDado(identificadorConsumidor);
+	    sleep(Math.random() * TEMPO_MAXIMO_ESPERA_ENTRE_CONSUMOS);
+	} else {
+	    System.out.println(identificadorConsumidor + " buffer vazio, esperando produção");
+	    sleep(Math.random() * TEMPO_MAXIMO_ESPERA_PRODUCAO);
+	}
+    } catch (BufferVazioException e) {
+	System.err.println("Tentando remover de buffer vazio");
+	sleep(Math.random() * TEMPO_MAXIMO_ESPERA_PRODUCAO);
+    } catch (Exception e) {
+	System.err.println("Falha no consumidor: " + e.getLocalizedMessage());
+	e.printStackTrace();
+    }
+}
+\end{lstlisting}
+
+
+
+\subsection{Produtor}
+
+O Produtor assim como o consumidor é criado por uma aplicação de configuração, que informa uma referência para o \textit{buffer} remoto, 
+o produtor por sua vez produz informações de tempos em tempos e insere no \textit{buffer}, consultando antes se esse não está cheio,
+caso esteja o \textit{buffer} espera por um tempo até que alguma informação seja consumida e o \textit{buffer} suporte novas informações. Caso o produtor tente inserir informações
+no \textit{buffer} cheio, este irá informar um erro de \textit{BufferCheio}, para que o produtor tente novamente mais tarde.
+
+No pseudocódigo ~\ref{code:cons} é demonstrado o ciclo de trabalho do produtor, enquanto um ''fim`` não for explicitamente sinalizado o produtor irá verificar se o \textit{buffer} remoto não está cheio,
+se tiver espaço livre ele irá produzir um dado e tentar inserir no \textit{buffer}, se tiver sucesso ele irá aguardar um tempo aleatório entre 0 e \verb'TEMPO_MAXIMO_ESPERA_ENTRE_PRODUCOES' segundos, 
+caso o \textit{buffer} esteja cheio o produtor irá dormir e esperar entre 0 e \verb'TEMPO_MAXIMO_ESPERA_CONSUMO' segundos para poder tentar novamente. 
+Caso entre a verificação de existência de espaço livre no \textit{buffer} e sua produção o \textit{buffer} tenha ficado cheio, o \textit{buffer} poderá retornar uma exceção do tipo \textit{BufferCheio},
+neste caso o produtor irá capturar o erro e aguardar o mesmo tempo que ele aguardaria se não existe espaços livres, tentando novamente após esse tempo.
+
+\lstset{language=Java, caption={Ciclo de Trabalho do Produtor}, label=code:prod}
+\begin{lstlisting}[frame=single, basicstyle=\tiny]
+while (!fim) {
+    Character dado = null;
+    try {
+	dado = RandomStringUtils.randomAlphabetic(1).charAt(0);
+	if (!referenciaBufferRemoto.isCheio()) {
+	    referenciaBufferRemoto.inserirDado(dado, identificadorProdutor);
+	    sleep(Math.round(Math.random() * TEMPO_MAXIMO_ESPERA_ENTRE_PRODUCOES));
+	} else {
+	    System.out.println("=" + identificadorProdutor + " buffer cheio, esperando consumo");
+	    sleep(Math.round(Math.random() * TEMPO_MAXIMO_ESPERA_CONSUMO));
+	}
+    } catch (BufferCheioException e) {
+	System.err.println("Tentando produzir em buffer cheio");
+	sleep(Math.round(Math.random() * TEMPO_MAXIMO_ESPERA_CONSUMO));
+    } catch (Exception e) {
+	System.err.println("Falha no produtor: " + e.getLocalizedMessage());
+	e.printStackTrace();
+    }
+}
+\end{lstlisting}
+
+\subsection{Buffer}
+
+O \textit{buffer} distribuído deve disponibilizar para os processos clientes informações sobre sua situação e disponibilizar
+métodos para inserir e retirar informações. 
+
+\lstset{language=Java, caption={Metodos do Buffer}, label=code:buff}
+\begin{lstlisting}[frame=single, basicstyle=\tiny]
+    String situacaoBuffer();
+
+    void inserirDado(char dado, String idProdutor);
+    
+    Character removerDado(String idConsumidor);
+
+    Boolean isCheio();
+
+    Boolean isVazio();
+\end{lstlisting}
+
+O pseudocódigo \ref{code:buff} apresenta a proposta deste trabalho para um \textit{buffer} distribuído, os métodos \textit{isCheio()} e \textit{isVazio()}
+informam se o \textit{Buffer} está cheio ou vazio, necessários para os produtores e consumidores informar sobre a situação do \textit{buffer} antes
+de realizar uma operação. O método ''\textit{inserirDado}`` permite ao produtor inserir dados no \textit{buffer}, o parametro ''idProdutor`` é opcional
+e serve para o \textit{buffer} conhecer o produtor da informação, ao passo que o método ''\textit{removerDados}`` permite ao consumidor retirar informações do \textit{buffer} 
+e da mesma forma o parâmetro ''idConsumidor`` serve para o \textit{buffer} conhecer o consumidor da informação.
+
+Alem disso o \textit{buffer} deve tratar a concorrência de operações de seus clientes, realizar operações de inserção e remoções atômicas, 
+protegidas de acessos concorrentes de threads e processos, e o mais importante bloquear por um período de tempo consumidores quando o \textit{buffer} estiver vazio
+e produtores quando o \textit{buffer} estiver cheio, no ultimo caso informar um erro se a espera for muito longa,o para que não fiquem esperando indefinidamente.
+
+
+\lstset{language=Java, caption={Ciclo de Trabalho do Buffer Distribuído}, label=code:buff-distribuido}
+\begin{lstlisting}[frame=single, basicstyle=\tiny]
+public synchronized void inserirDado(char dado, String idProdutor) {
+    while (tamanho >= TAMANHO_MAXIMO_BUFFER - 1) {
+	try {
+	    System.out.println("Produtor tentando inserir em buffer cheio");
+	    System.out.println("Bloquear chamada temporariamente e esperar retiradas");
+	    this.wait(TEMPO_MAXIMO_ESPERA_CONSUMO);
+	} catch (Exception ex) {
+	    System.err.println("Não ocorreu retirada durante a espera");
+	    throw new BufferCheioException();
+	}
+    }
+    buffer[fim] = dado;
+    System.out.println(">" + idProdutor + " inserindo "
+                      + dado + "\tna posição " + fim + "\t");
+    fim++;
+    tamanho++;
+    informarSitauacaoBuffer();
+    /* Acordar chamadas de consumidores que possam estar aguardando (wait) */
+    this.notifyAll();
+}
+
+public synchronized Character removerDado(String identificador) {
+  Character retirado = null;
+  while (tamanho <= 0) {
+      try {
+          System.out.println("Consumidor tentando remover de buffer vazio");
+	  System.out.println("Bloquear chamada  temporariamente e esperar produção");
+	  this.wait(TEMPO_MAXIMO_ESPERA_PRODUCAO);
+      } catch (Exception e) {
+          System.err.println("Não ocorreu produção durante a espera");
+	  throw new BufferVazioException();
+      }
+  }
+  retirado = buffer[fim];
+  tamanho--;
+  System.out.println("<" + identificador + " retirando " 
+                     + retirado + "\tda posição " + fim + "\t");
+  fim--;
+  informarSitauacaoBuffer();
+  /* Acordar chamadas de produtores que possam estar aguardando (wait) */
+  this.notifyAll();
+  return retirado;
+}
+\end{lstlisting}
+
+O pseudocódigo ~\ref{code:buff-distribuido} apresenta os métodos do \textit{buffer} utilizado pelo produtor e consumidor, é possível verificar que ambos são protegidos de concorrência de threads (syncronized),
+e que existe uma determinada tolerância de produção em \textit{buffer} cheio ou de consumo em \textit{buffer} vazio. Antes de um erro ser informado, o \textit{buffer} irá bloquear a chamada,
+esperando que alguma situação possa alterar o estado do \textit{buffer} e permitir que a chamada se concretize sem erro,
+caso isso não ocorra dentro de um dado período de tempo um erro indicando a situação do \textit{buffer} é repassado para o cliente.
+
+
+
+\section{Solução Implementada}
+
+A solução implementada consiste de uma aplicativo visual para instanciação dos elementos envolvidos. A execução da aplicação apresenta ma constante troca de mensagens entre o \textit{buffer}
+e seus clientes produtores e consumidores. A figura ~\ref{fig:arq-men} apresenta de forma geral a troca de mensagens entre os elementos envolvidos no problema.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\textwidth]{arquitetura-cliente-servidor-mensagens.png}
+  \caption{Troca de mensagens entre os elementos.}
+  \label{fig:arq-men}
+\end{figure}
+
+\subsection{Linguagem}
+A linguagem de programação utilizada foi a Linguagem Java, por possui varios recursos nativos que são interessantes ao problema apresentado. A vesrão e o Kit de Desenvolvimento especifico
+utilizado foi o JAVA SE JDK 7.
+
+\subsection{Java RMI}
+A abordagem distribuída utilizada é a cliente servidor com Objetos Distribídos, com o uso de Invocação Remota de Metódos, conhecido RMI.
+A implementação utilizada é a implementação nativa da linguagem Java, o Java RMI \cite{JavaRMI}.
+
+\subsection{\textit{Metódos Sincronizados}}
+A parte do sistema que realiza operações sobre os contadores do \textit{buffer} e sua estrutura interna de armazenamento está protegida do acesso concorrente de threads,
+com o uso dos metódos sincronizados (Synchronized Methods), um recurso nativo da linguagem que facilita a programação concorrente com compartilhamento de recursos \cite{JavaDoc}.
+
+\section{Testes Realizados}
+   Para realizar os teste o ambiente precisa ser executado, uma copia da implementação ''produtor-consumidor-distribuido-1.0.jar`` deve ser feita em cada host que irá executar o projeto.
+Após isso o ''rmiregistry`` deve ser executado nos hosts que irão abrigar os objetos remotos, conforme comando na figura \ref{fig:rmiregistry}. Com o rmiregistry devidamente executado em 3 hosts.
+Deve se executar a aplicação de configuração conforme comando em figura \ref{fig:executar}. Com isso o ambiente está pronto para executar os testes.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\textwidth]{rmiregistry.png}
+  \caption{Executando rmiregistry.}
+  \label{fig:rmiregistry}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\textwidth]{executar.png}
+  \caption{Executando a aplicação de configuração.}
+  \label{fig:executar}
+\end{figure}
+
+
+\subsection{Teste Simples}
+
+Em um teste simples, um \textit{buffer}, um produtor e um consumidor devem ser instanciados para que possam, interagir entre si com pouca concorrência,
+apenas para verificar se o ambiente está corretamente em execução. Para instanciar o nome do host onde deseja-se instanciar deve ser preenchido,
+o elemento a ser instanciado (buffer, produtor ou consumidor) e em seguida clicar em instanciar, conforme figura ~\ref{fig:instanciar}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\textwidth]{instanciar.png}
+  \caption{Tela de aplicação de configuração}
+  \label{fig:instanciar}
+\end{figure}
+
+Na figura ~\ref{fig:teste-simples} é possível ver o que será mostrado no console da aplicação de configuração, durante a execução do teste simples,
+o produtor e consumidor inserindo e removendo informações no \textit{buffer} praticamente na mesma cadência, dessa forma o \textit{buffer} dificilmente ficará cheio ou vazio.
+Porém é possível constatar que o ambiente está operacional.
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\textwidth]{teste-simples.png}
+  \caption{Execução de teste simples}
+  \label{fig:teste-simples}
+\end{figure}
+
+
+\subsection{Teste de Consumo Intensivo}
+
+Um teste de consumo intensivo foi realizado, instanciando um \textit{buffer}, um produtor e cinquenta consumidores, a concorrência no consumo é acirrada, 
+na figura ~\ref{fig:cons-itensivo}. Com cinquenta vezes mais consumidores que produtores, o \textit{buffer} precisa tratar intensamente com a concorrência 
+dos dados produzidos, bloqueando as chamadas de consumo e aguardando produções, que são imediatamente consumidas após a inserção no \textit{buffer}, com esse teste
+é possível constatar que aplicação é tolerante a concorrência de consumo e evita falhas excessivas de \textit{BufferVazio} nos clientes consumidores, 
+através de uma espera das chamadas.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\textwidth]{cons-intensivo.png}
+  \caption{Instanciar um teste de consumo itensivo.}
+  \label{fig:cons-itensivo}
+\end{figure}
+
+Na figura ~\ref{fig:teste-cons-itensivo} é possível ver o que será mostrado no console da aplicação de configuração, durante a execução do teste de consumo intensivo,
+o produtor único inserindo informação no \textit{buffer} e os consumidores tentando consumir, porem a grande maioria fica aguardando e a maior parte do tempo o \textit{buffer} estará vazio.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\textwidth]{cons-intensivo-console.png}
+  \caption{Execução de um teste de consumo intensivo.}
+  \label{fig:teste-cons-itensivo}
+\end{figure}
+
+
+\subsection{Teste de Produção Intensiva}
+
+Um teste de produção intensiva foi realizado, instanciando um \textit{buffer}, um consumidor e cinquenta produtores, 
+em pouco tempo o \textit{buffer} fica cheio e a concorrência na produção fica acirrada,
+na figura ~\ref{fig:prod-intensiva}. 
+Com cinquenta vezes mais produtores que consumidores, o \textit{buffer} precisa tratar intensamente com a concorrência 
+dos dados produzidos, bloqueando as chamadas de produção quando o \textit{buffer} está cheio e aguardando  novos consumos,
+com esse teste é possível constatar que aplicação é tolerante a concorrência de produção e evita o estouro do \textit{buffer},
+e evitando falhas excessivas de \textit{BufferCheio} nos produtores, através de uma espera das chamadas.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\textwidth]{prod-intensiva.png}
+  \caption{Instanciar um teste de produção intensiva}
+  \label{fig:prod-intensiva}
+\end{figure}
+
+Na figura ~\ref{fig:teste-prod-intensiva} e ~\ref{fig:teste-prod-intensiva2} é possível ver o que será mostrado no console da aplicação de configuração, durante a execução do teste de produção intensiva,
+o único consumidor retira informações do \textit{buffer} em uma cadência muito menor do que os cinquenta produtores inserem, na maior parte do tempo o \textit{buffer} estará cheio, 
+e os produtores estarão bloqueados aguardando liberação de espaço no \textit{buffer}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\textwidth]{prod-intensiva-console.png}
+  \caption{Execução do teste de produção intensiva - Parte 1.}
+  \label{fig:teste-prod-intensiva}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=.5\textwidth]{prod-intensiva-console-2.png}
+  \caption{Execução do teste de produção intensiva - Parte 2.}
+  \label{fig:teste-prod-intensiva2}
+\end{figure}
+
+
+\section{Conclusões}
+Mesmo utilizando um simples controle de concorrência é possível distribuír o problema do produtor e consumidor,
+sem que as aplicações clientes precisem tratar com grande complexidade de concorrência, uma implementação adequada do \textit{buffer}
+com o correto controle de concorrência de acesso e sinalização de estado é capaz de produzir um resultado satisfatório.
+
+
+\begin{filecontents}{braully-bib.bib}
+@book{toscani2003sistemas,
+  title={Sistemas operacionais e programa{\c{c}}{\~a}o concorrente},
+  author={Toscani, S.S. and de Oliveira, R.S. and da Silva Carissimi, A.},
+  isbn={9788524106828},
+  series={S{\'e}rie Livros Did{\'a}ticos},
+  url={http://books.google.com.br/books?id=h4xqQwAACAAJ},
+  year={2003},
+  publisher={Sagra Luzzatto}
+}
+@misc{JavaRMI,
+  title = {Java Remote Method Invocation API - Java SE Documentation},
+  author={Oracle Corporation},
+  howpublished={\url{http://docs.oracle.com/javase/7/docs/technotes/guides/rmi}},
+  note = {Acessado: 2015-05-01}
+}
+@misc{JavaDoc,
+  title = {Synchronized Methods - The Java Tutorials},
+  author={Oracle Corporation},
+  howpublished={\url{https://docs.oracle.com/javase/tutorial/essential/concurrency/syncmeth.html}},
+  note = {Acessado: 2015-05-01}
+}
+\end{filecontents} 
+
+\bibliographystyle{sbc}
+\bibliography{braully-bib}
+
+\end{document}

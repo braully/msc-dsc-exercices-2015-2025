@@ -1,0 +1,21 @@
+1 - COMPILAÇÃO:
+
+Primeiramente os binarios antigos devem ser limpados:
+    $ make clean
+
+Depois uma compilação completa deve ser realizada:
+    $ make all
+
+
+Após isso, todos os codigos estarão compilados e o binário gerado.
+
+Alternativamente poderá executar o script bash "compilar.sh"
+
+2 - EXECUÇÃO:
+
+O binário sera gerado na pasta de distruição:
+     dist/Release/GNU-Linux-x86/simulador-edpa
+
+Basta executa-lo apartir do diretório base do projeto, com o comando ./dist/Release/GNU-Linux-x86/simulador-edpa
+
+Alternativamente poderá executar o script bash "executar.sh"
