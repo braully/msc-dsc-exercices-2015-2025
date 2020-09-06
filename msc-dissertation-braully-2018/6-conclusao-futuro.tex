@@ -1,0 +1,80 @@
+\chapter{Conclusões e Trabalhos Futuros}
+\label{sec:crono}
+
+Concluímos este trabalho com resultados teóricos e implementações de cunho mais prático, conforme visto nos capítulos anteriores. 
+
+Primeiramente conseguimos delimitar um limite superior para o número envoltório de grafos de diâmetro 2. Caso o grafo de diâmetro 2 tenha um vértice de corte, demonstramos que o número envoltório é no máximo o número de componentes conexas do subgrafo removendo esse vértice. Para os demais grafos de diâmetro 2 desenvolvemos um algoritmo que iterativamente constrói um conjunto envoltório. Uma análise desse algoritmo, conjuntamente com propriedades desses grafos, nos permitiu limitar o tamanho máximo do conjunto envoltório concebido ao final. Com o estabelecimento deste limite geral para os grafos de diâmetro 2, conseguimos melhorá-lo para as subclasses fortemente regular, baseado nos parâmetros $b$ e $c$ e mostrando que o número envoltório dos maximal sem triângulo é no máximo 4. O que corroborou com as melhorias das premissas levantadas nos resultados da FATIG, culminando em resultados teóricos.
+
+Nos experimentos realizados com a FATIG todos os grafos de diâmetro 2 testados tinham o número envoltório limitado a 4. Percebemos esse limite mas não conseguimos estabelecê-lo para a classe. Assim deixamos como trabalho futuro demonstrar a seguinte conjectura: 
+
+\begin{conjecture}
+    Seja $G$ um grafo com diâmetro 2, sem vértice de corte então $h(G) \le 4$.
+    \label{conjecture-d2-4}
+\end{conjecture}
+ 
+Em nossas buscas o único grafo de diâmetro 2 sem vértice de corte, que atinge esse limite é o grafo de Hoffman Singleton. 
+Na tentativa de encontrar um contraexemplo de um grafo de diâmetro 2, sem vértice de corte e com número envoltório maior ou igual a 5, nos deparamos múltiplas vezes com subcasos infindáveis. Porém como um efeito colateral dessa busca, desenvolvemos um algoritmo para geração dos grafos de Moore. Esse algoritmo utiliza fundamentos teóricos dos grafos de diâmetro 2 minimais e combinações de arestas. Apesar dos diversos trabalhos acadêmicos em busca pelo último grafo de Moore, pouco ou nada se documenta sobre o método pretendido. Dado o número de combinações e o tempo do trabalho, não o encontramos, tão pouco esgotamos todas as combinações existentes. Porém deixamos aqui esses degraus percorridos, que podem ser relevantes para quem queira futuramente encontrá-lo, caso ele exista. 
+
+Para o número de Carathéodory concluímos um resultado constante para grafos de diâmetro 2 com vértice de corte, com o auxilio das propriedades identificadas ao longo dos estudos do número envoltório. 
+A Conjectura~\ref{conjecture-g-c4} levantada ainda na fase de investigação não foi confirmada, 
+mas mostra-se promissora para futuros trabalhos. 
+
+\begin{conjecture}
+    Seja $G$ um grafo com diâmetro 2, então $c(G) \le 4$.
+    \label{conjecture-g-c4}
+\end{conjecture}
+
+Com base na Conjectura~\ref{conjecture-g-c4}, 
+os resultados práticos analisados 
+e o limite superior conhecido do número envoltório, 
+também formulamos a Conjectura~\ref{conjecture-d2-c4}.
+Que pode vir a ser um outro limite superior ao número de Carathéodory, 
+alternativo ao estabelecido por ~\cite{Barbosa2012}. 
+%Combinadamente os resultados práticos e teóricos.
+%Conjecturamos para futuros trabalhos um limite tal que menor do que o quadrado do diâmetro. 
+
+\begin{conjecture}
+    Seja $G$ um grafo e $d$ seu diâmetro, então $c(G) \le d^2$.
+    \label{conjecture-d2-c4}
+\end{conjecture}
+
+Dentre os resultados práticos, 
+implementamos algoritmos força bruta para os parâmetros número envoltório e Carathéodory $P_3$. Essas implementações permite obter em tempo aceitável resultados para pequenos grafos gerais.
+Mais a frente desenvolvemos implementações paralelas dessas implementações, 
+para explorarmos grafos maiores que o inicialmente desejado. Essa versão em paralelo nos trouxe um ganho de tempo até 4 vezes menor em relação as versões não paralelas.
+Por fim desenvolvemos algoritmos heurísticos para ambos os problemas,
+com otimizações paralelas capazes de lidar com uma extensa compilação de grafos de diversos tamanhos. Essa versão nos permitiu, mesmo que por aproximação,
+olhar resultados muito além dos baixos limites impostos pela complexidade exponencial do problema.
+As implementações de todos esses algoritmos foi disponibilizada em uma ferramenta unificada,
+para facilitar o uso e análise do histórico dos resultados. Nomeamos essa ferramenta de {\it FATIG}.
+Dadas as facilidades empregadas na ferramenta,
+riqueza visual e extensão simples, cremos que ela é facilmente aplicável a outros problemas diferente dos tratados neste trabalho. No intuito de que seja importante a outros projetos, está disponível em \cite{braully2017} a quem interessar o uso, alteração ou distribuição.
+
+% Ainda no campo das implementações, 
+% para que os algoritmos desenvolvidos neste trabalho possam ser utilizados com mais facilidade, além da disponibilidade dos códigos, implementamos uma ferramenta para operacionalizar a execução, 
+% testes e visualização dos resultados.
+%
+
+Ainda, com o uso da {\it FATIG} identificamos alguns limites interessantes para outras classes de grafos.
+Um grafo $G$ é \textit{snark} se $G$ é 3-regular e não pode ser 3-colorível \cite{Brinkmann2013,hog2013}.
+Para os grafos snarks testados, com grau $n$, constatamos que o número de Carathéodory não ultrapassou $\lceil\frac{n}{3}\rceil$. Assim conjecturamos que:
+
+\begin{conjecture}
+    Seja $G$ um grafo snark, então $c(G) \le \lceil\frac{n}{3}\rceil$.
+    \label{conjecture-snark}
+\end{conjecture}
+
+
+Por fim, um grafo é \textit{vértice-transitivo} se para qualquer dois vértices existe um automorfismo entre eles.
+Executamos todos os grafos vértice-transitivo com até 31 vértices 
+e identificamos que o número envoltório não ultrapassou o teto de $\lceil\frac{n}{2}\rceil$, onde $n$ é o grau do grafo. 
+Desta forma, estabelecemos a seguinte conjectura que também deixamos como trabalhos futuros:
+%Para a classe dos grafos cúbicos, conforme visto na revisão bibliográfica, existe um algoritmo de tempo polinomial para determinação
+%do número envoltório. Os grafos snarks são um tipo especial de grafo cúbico. Para esta classe, nossos resultados mostraram que o número envoltório possue um crescimento pequeno.
+% nos resultados dos testes encontrados, demonstraram uma tendência linear,com indicação de um possível valor exato. Ao passo que o número de Carathéodory desses grafo pode estar limitado por $c(G) \le \lceil\frac{n}{3}\rceil$.
+%Todos os grafos vértice-transitivo conexos até 31 vértices foram verificados e de posse dos resultados podemos conjecturar que seu limite é $h(G) \le \lceil\frac{n}{2}\rceil$.
+
+\begin{conjecture}
+Seja $G$ um grafo vértice-transitivo, então $h(G) \le \lceil\frac{n}{2}\rceil$.
+\label{conjecture-vt}
+\end{conjecture}

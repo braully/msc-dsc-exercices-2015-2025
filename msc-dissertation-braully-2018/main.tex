@@ -1,0 +1,164 @@
+\documentclass[dissertacao]{inf-ufg}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+%\usepackage[portuguese]{algorithm2e}
+\usepackage{pgfplots}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepgfplotslibrary{external}
+\usepackage{pdfpages}
+%\usepackage{minted}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usetikzlibrary{arrows,shapes,backgrounds,calc,snakes}
+\usepgfplotslibrary{fillbetween}
+\usepackage{pgfplotstable}
+\usepackage{pdflscape}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\makeatletter 
+\renewcommand\thealgorithm{\thechapter.\arabic{algorithm}} 
+\@addtoreset{algorithm}{chapter} 
+\makeatother
+
+\newtheorem{observation}[definition]{Observação}
+\newtheorem{properties}[definition]{Propriedades}
+%\newtheorem{coro}{Corolário}
+\newtheorem{coro}[definition]{Corolário}
+\newtheorem{conjecture}[definition]{Conjectura}
+\newcommand{\multicolinterrupt}[1]{% Stuff to span both rows
+\SetKw{Interromper}{interromper}
+\SetKw{Continue}{continue}
+\end{multicols}
+#1
+\begin{multicols}{2}
+}
+
+
+\newcommand{\convexpath}[2]{
+[   
+    create hullnodes/.code={
+        \global\edef\namelist{#1}
+        \foreach [count=\counter] \nodename in \namelist {
+            \global\edef\numberofnodes{\counter}
+            \node at (\nodename) [draw=none,name=hullnode\counter] {};
+        }
+        \node at (hullnode\numberofnodes) [name=hullnode0,draw=none] {};
+        \pgfmathtruncatemacro\lastnumber{\numberofnodes+1}
+        \node at (hullnode1) [name=hullnode\lastnumber,draw=none] {};
+    },
+    create hullnodes
+]
+($(hullnode1)!#2!-90:(hullnode0)$)
+\foreach [
+    evaluate=\currentnode as \previousnode using \currentnode-1,
+    evaluate=\currentnode as \nextnode using \currentnode+1
+    ] \currentnode in {1,...,\numberofnodes} {
+-- ($(hullnode\currentnode)!#2!-90:(hullnode\previousnode)$)
+  let \p1 = ($(hullnode\currentnode)!#2!-90:(hullnode\previousnode) - (hullnode\currentnode)$),
+    \n1 = {atan2(\y1,\x1)},
+    \p2 = ($(hullnode\currentnode)!#2!90:(hullnode\nextnode) - (hullnode\currentnode)$),
+    \n2 = {atan2(\y2,\x2)},
+    \n{delta} = {-Mod(\n1-\n2,360)}
+  in 
+    {arc [start angle=\n1, delta angle=\n{delta}, radius=#2]}
+}
+-- cycle
+}
+
+\begin{document}
+\autor{Braully Rocha da Silva}
+\autorR{Silva, Braully Rocha}
+
+%\titulo{Estudos e Implementações de Parâmetros na Convexidade $P_3$}
+
+%\titulo{Algoritmos e limites para alguns parâmetros na convexidade $P_3$}
+
+\titulo{Algoritmos e limites para os números envoltório e de Carathéodory na convexidade $P_3$}
+
+\cidade{Goiânia}
+\dia{24} %
+\mes{09}
+\ano{2018}
+
+%-------------------------------------------------------------- ORIENTADOR %
+\orientador{Dra. Erika Morais Martins Coelho}
+\orientadorR{Nome Reverso do Orientador}
+\orientadora{Dra. Erika Morais Martins Coelho}
+\orientadoraR{Morais Martins Coelho, Erika}
+
+\coorientador{Dr. Hebert Coelho da Silva}
+\coorientadorR{Coelho da Silva, Hebert}
+
+\universidade{Universidade Federal de Goiás}
+\uni{UFG}
+\unidade{Instituto de Informática}
+
+\universidadeco{Universidade Federal de Goiás}
+\unico{UFG}
+\unidadeco{Instituto de Informática}
+
+\programa{Mestrado em Ciências da Computação}
+\concentracao{Ciência da Computação}
+
+%-------------------------------------------------- ELEMENTOS PRÉ-TEXTUAIS %
+\capa
+\includepdf[pages=-,pagecommand={},width=\textwidth]{imagens/doc00291520181029140039.pdf}
+%\publica % Gera a autorização para publicação
+\rosto   % Primeira folha interna do trabalho
+\includepdf[pages=-,pagecommand={},width=\textwidth]{imagens/ficha-catalografica.pdf}
+\includepdf[pages=-,pagecommand={},width=\textwidth]{imagens/BRN30055CB438A3_004905.pdf}
+% \begin{aprovacao}
+% \banca{Dra. Márcia Rodrigues Cappelle Santana}{Instituto de Informática\ -- UFG}
+% \banca{Dr. Uéverton dos Santos Souza}{Instituto de Computação\ -- UFF}
+% \end{aprovacao}
+
+%\input{./pre/pre_aprovacao}
+%\input{./pre/pre_direitos}
+%\input{./pre/pre_dedicatoria}
+%\input{./pre/pre_agradecimentos}
+%\input{./pre/pre_epigrafe}
+%\input{./pre/pre_resumo}
+%\input{./pre/pre_abstract}
+
+\input{0-pre-textual}
+\tabelas[figtabalg]
+%Opções:
+%nada [] -> Gera apenas o sumário
+%fig     -> Gera o sumário e a lista de figuras
+%tab     -> Sumário e lista de tabelas
+%alg     -> Sumário e lista de algoritmos
+%cod     -> Sumário e lista de códigos de programas
+% Pode-se usar qualquer combinação dessas opções.
+% Por exemplo:
+%  figtab       -> Sumário e listas de figuras e tabelas
+%  figtabcod    -> Sumário e listas de figuras, tabelas e códigos de programas
+%  figtabalg    -> Sumário e listas de figuras, tabelas e algoritmos
+%  figtabalgcod -> Sumário e listas de figuras, tabelas, algoritmos e códigos de programas
+%--------------------------------------------------------------- CAPÍTULOS %
+
+\input{1-intro-projeto}
+\input{2-fundamentos}
+\input{2-revisao-bibliografica}
+\input{3-resultados-envoltorio}
+\input{4-resultados-caratheodory}
+\input{5-resultados-grafo-moore}
+\input{5-resultados-implementacao}
+\input{6-conclusao-futuro}
+
+%------------------------------------------------------------ BIBLIOGRAFIA %
+\cleardoublepage
+\arial
+\bibliography{dissertacao-bib}
+\label{ref-bib}
+
+%--------------------------------------------------------------- APÊNDICES %
+%\apendices
+\apendices
+\input{7-apendice}
+
+\end{document}
+

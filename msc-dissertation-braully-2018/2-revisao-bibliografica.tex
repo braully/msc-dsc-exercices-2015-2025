@@ -1,0 +1,52 @@
+\section{Revisão Bibliográfica e Trabalhos Relacionados}
+
+Nesta seção teremos uma revisão bibliográfica dos estudos de convexidade $P_3$ em grafos para os parâmetros sobre número envoltório e número de Carathéodory. 
+Além disso, faremos uma menção aos trabalhos relacionados.
+
+Os estudos  de convexidade em grafos se iniciam nas décadas de 70 e 80, momento em que surgem as primeiras definições de convexidades de caminho e parâmetros \cite{Harary1981,Nieminen1981,Pfaltz1971,Varlet1976}. 
+E estes são os primeiros trabalhos na convexidade geodésica, 
+monofônica e caminho de triângulos, para os quais é possível encontrar diversos resultados \cite{Araujo2011,Dourado2009,Dourado2013,Hernando2005,Journal2010,Nourine2012}.
+
+
+Na revisão bibliográfica realizada neste trabalho, visamos encontrar resultados para o número envoltório e de Carathéodory na convexidade $P_3$.
+
+Para o número envoltório, iniciamos com a constatação em \cite{Centeno2011} expondo que decidir se um grafo $G$ tem um conjunto envoltório de tamanho $k$ é um problema NP-Completo na convexidade $P_3$.
+Foi provado que mesmo para grafos planares com grau máximo limitado,
+$3 \le \Delta(G) \le 4$, o problema permanece NP-Completo \cite{Penso2015}.
+Porém, também temos que o número envoltório é limitado superiormente por outro parâmetro:
+o número geodésico. O número geodésico é a cardinalidade do menor conjunto geodésico possível.
+Por sua vez, um conjunto geodésico $S \subseteq V(G)$ é aquele em que todo vértice de $G$ 
+ou está em $S$, ou possui dois vizinhos que estão em $S$. Em alguns casos especiais eles são equivalentes e pode-se inferir o número envoltório de grafos que não tenha como subgrafos induzido cinco formas determinadas \cite{Centeno}. 
+
+
+Nos trabalhos em \cite{Balogh,Bollobas,duarte2015complexity,De2016a}, temos 
+o estabelecimento do número envoltório, ou limites 
+para determinados produtos de grafos e primas complementares. 
+Ao passo que em outros trabalhos \cite{DraquePenso2014,duarte2015complexity,Hon2016},
+temos a demonstração da existência de um algoritmo polinomial
+para grafos cúbicos, primas Complementares, p4-redutíveis, \textit{treewidth} limitado e co-árvore.
+
+%Porém resultados e estudos também foram levantados e identificados na convexidade geodésica.
+%Cabe citar os avanços da demonstração é polinomialmente possível obter o número envoltório para grafos Cactos, P4-Esparsos\cite{Araujo2011} e Sem Triangulo \cite{Journal2010}. 
+
+
+Para o número de Carathéodory na convexidade $P_3$, 
+também podemos constatar que determinar se $G$ tem um conjunto de Carathéodory de tamanho k, é um problema NP-Completo mesmo para grafos bipartidos \cite{Barbosa2012}. 
+Ainda neste trabalho, temos um algoritmo polinomial para determinar o número de Carathéodory de árvore e um tipo especial de grafos bloco. 
+
+Assim como foi constatado que o limite superior para o número de Carathéodory é $c(G) \le (n(G) + 1)/2$, onde $n(G)$ é o número de vértices de $G$. A igualdade é alcançada pela classe das árvores estritamente binárias cheias. A partir desse trabalho ao longo dos últimos anos foi demonstrado a existência de algoritmo polinomial para cografos \cite{Coelho2014}, com largura arbórea limitada \cite{Hon2016}, P4-redutíveis \cite{Hon2016} e co-árvores \cite{Hon2016}. Em \cite{Duarte} foi demonstrado que o problema
+de decidir se $G$ têm um conjunto de Carathéodory de tamanho $k$ permanece NP-Completo mesmo quando $G$ for um prisma complementar.
+
+
+%\subsection{Implementações de Convexidade}
+Na revisão bibliográfica realizada, 
+não foram encontrados algoritmos aproximativos que possam auxiliar na obtenção desses parâmetros, mas  em publicações recentes, foram realizadas implementações dos parâmetros 
+número envoltório $P_3$ e geodésico em \cite{Lacerda2017} e em \cite{Leonardo2016} foi implementado um algoritmo para verificação se um dado conjunto é geodésico.
+Ambas implementações são experimentações práticas, embasadas em fundamentos teóricos, 
+com o objetivo de fomentar e auxiliar o estudo de parâmetros de convexidade em grafos.
+%Contudo, realizamos várias implementações dos parâmetros citados com o objetivo de determinar seus valores para classes específicas de grafos.
+
+No próximo capítulo traremos resultados para o número envoltório em grafos de diâmetro 2.
+
+
+

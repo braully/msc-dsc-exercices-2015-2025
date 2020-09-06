@@ -1,0 +1,40 @@
+\node (v1) at (-12.0729,6.5067) {};
+\node (v5) at (-12.0729,5.5067) {};  
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$v$] (v) at (-10.3012,6.8026) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$u$] (u) at (-10.2191,5.2937) {};
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $H(S^\prime)$}] (v6) at (-11.9,6) {};
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $V(G) \setminus H(S^\prime)$}] at (-10.1,6) {};
+\draw  (v1) edge (v);
+\draw  (v5) edge (u);
+\draw  (v) edge (u);
+
+
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$v$] (vc) at (-12.4,2.8) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$u$] (uc) at (-12.4,1) {};
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $H(S^\prime)$}] at (-14,2) {};
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $V(G) \setminus H(S^\prime)$}] at (-12.2,2) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$w^\prime$] (v4) at (-12.5,2) {};
+\draw  (uc) edge (v4);
+\draw  (v4) edge (vc);
+
+
+\node (v9) at (-14,2.5) {};
+\node (v10) at (-14,1.5) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$v$] (vc2) at (-8.5,3) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$u$] (uc2) at (-8.5,1) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$w$] (wc2) at (-10,2) {};
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $H(S^\prime)$}] at (-10.1,2) {};
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $V(G) \setminus H(S^\prime)$}] at (-8.4,2) {};
+\node at (-10.2,2.7) {};
+\node at (-10.1,1.5) {};
+\draw  (vc2) edge (wc2);
+\draw  (uc2) edge (wc2);
+
+\node at (-11,4.5) {Caso 1};
+\node at (-13.1,0.5) {Caso 2a};
+\node at (-9.2,0.5) {Caso 2b};
+
+\draw  (v9) edge (vc);
+\draw  (uc) edge (v10);
+\draw[snake=zigzag,dashed]  (vc2) edge (uc2);
+\node at (-8,2) {$P_{vu}$};

@@ -1,0 +1,76 @@
+\subsection{Revisão e Trabalhos Relacionados}
+\begin{frame}
+\frametitle{Complexidade}
+\framesubtitle{NP-Completo}
+ \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \centering
+        \includegraphics[scale=.5]{img/rubik.jpeg}
+    }
+    \end{column}
+    \begin{column}{.5\textwidth}
+        NP-Completo:
+        \begin{itemize}
+            \item{Determinar se um grafo $G$ tem um conjunto envoltório de tamanho $k$}
+            \item{Determinar se um grafo $G$ tem um conjunto Carathéodory de tamanho $k$}
+        \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Complexidade}
+\framesubtitle{NP-Completo}
+ \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+    \centering
+    \resizebox{\textwidth}{!}{%
+        \centering
+        \includegraphics[scale=.5]{img/rubik.jpeg}
+    }
+    \end{column}
+    \begin{column}{.5\textwidth}
+        Explorar problemas NP-Completo:
+        \begin{itemize}
+            \item{Isolar e estudar casos polinomiais}
+            \item{Estabelecer limites teóricos}
+            \item{Soluções exponenciais para pequenas entradas}
+            \item{Soluções aproximadas}
+        \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Revisão Bibliográfica}
+\framesubtitle{Resultados Nº Envoltório}
+\begin{table}[H]
+\centering
+\label{tab-resultado-envoltoria}
+    \begin{tabular}{c|c}
+    \textbf{Resultado}    & \textbf{Grafo}  \\ \hline
+    NP-Completude & Gerais (Redução SAT) e Planares $3 \le \Delta \le 4$ \\ \hline
+    Limite  & \begin{tabular}[c]{@{}c@{}} Cografo, Cúbico, Tree-cograph, \\ Determinados produtos (KxK, PxK, CxK, GxH, PxC), \\ Produto Forte GxH, Produto Lexicografico GxH \\  \end{tabular} \\ \hline
+    Algoritmo polinomial & \begin{tabular}[c]{@{}c@{}} Árvore, Cordal,  Cúbico, P4-Reducible, Bounded Treewidth \\ Bounded Rankwidth \end{tabular}  \\ \hline
+    \end{tabular}
+\end{table}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Revisão Bibliográfica}
+\framesubtitle{Resultados Nº Carathéodory}
+\begin{table}[H]
+    \centering
+    \label{tab-resultado-caratheodory}
+    \begin{tabular}{c|c}
+        \textbf{Resultado}    & \textbf{Grafo} \\ \hline
+        NP-Completude      & Bipartido (Redução 3-SAT)  \\ \hline
+        Limite             &  \begin{tabular}[c]{@{}c@{}} Geral, Árvore, Bloco Especial \\ Claw-free, Cografos, Split  e P4-Reducible \end{tabular} \\ \hline
+        Algoritmo Polinomial & \begin{tabular}[c]{@{}c@{}} Árvore, Chordal, Three-cograph \\ Bounded Treewidth e Rankwidth \end{tabular} \\ \hline
+    \end{tabular}
+\end{table}
+\end{frame}

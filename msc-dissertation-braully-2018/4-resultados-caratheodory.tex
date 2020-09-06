@@ -1,0 +1,443 @@
+%Capitulo carathéodory
+\chapter{Número de Carathéodory $P_3$ para alguns Grafos de diâmetro 2}
+\label{cara}
+
+O número de Carathéodory é outro parâmetro interessante em convexidade. Considerando a convexidade $P_3$, foco do nosso trabalho, já foi demonstrado que a determinação do número de Carathéodory é um problema NP-Completo até mesmo para grafos bipartidos \cite{Barbosa2012}. 
+Ainda em \cite{Barbosa2012}, Barbosa et. al apresentou um limite superior para o número de Carathéodory para grafos gerais. Seja $G$ um grafo, denotemos por $n=n(G)$ a cardinalidade do seu conjunto de vértices.
+
+\begin{theorem}\cite{Barbosa2012} 
+\label{teo-barbosa2012}
+Se $G$ é um grafo de ordem $n$ então $c(G) \leq \frac{n+1}{2}$. 
+\end{theorem}
+
+Esse é um limite superior geral, em que a igualdade é atingida quando $G$ for uma árvore estritamente binária, que consiste em uma arvoré enraizada cujos os vértices internos possuem exatamente dois vizinhos.
+% Quando $G$ for uma árvore seu limite é determinado pela quantidade de folhas da maior subárvore estritamente binária de $G$ \cite{Barbosa2012}.
+% Com isso podemos concluir que uma árvore estritamente binária de profundidade 2 tem número de Carathéodory no máximo 4. Observe as árvores $T_7$ e $T_{12}$ na Figura~\ref{fig-arvore-b4}, e note que em ambas o número de Carathéodory é 4.
+
+
+% Observando Árvore $T_{12}$ a adição de arestas entres as folhas da árvore resultaria em supergrafo $T^\prime$,
+% nos surge o seguinte questionamento, existe algum $T^\prime$ tal que $c(T^\prime)>c(T_{12})$.
+% Questionamento esse que exige maior investigação e q que poderia resultar na demonstração da Conjectura~\ref{conject-sup}.
+
+
+% \begin{figure}[h]
+% \centering
+% \begin{tikzpicture}
+% %   \node[circle,draw,fill=black!50,label=below:$v_0$] (v1) at (-16.5,3.5) {};
+% %   \node[circle,draw,fill=black!70,label=below:$v_1$] (v2) at (-18,2) {};
+% %   \node[circle,draw,fill=black!70,label=below:$v_2$] (v3) at (-15,2) {};
+% %   \node[circle,draw,fill=black!100,label=below:$v_6$] (v4) at (-14,0) {};
+% %   \node[circle,draw,fill=black!100,label=below:$v_3$] (v5) at (-19,0) {};
+% %   \node[circle,draw,fill=black!100,label=below:$v_4$] (v6) at (-17,0) {};
+% %   \node[circle,draw,fill=black!100,label=below:$v_5$] (v7) at (-16,0) {};
+%   \node[circle,draw,label=below:$v_0$] (v1) at (-16.5,3.5) {};
+%   \node[circle,draw,label=below:$v_1$] (v2) at (-18,2) {};
+%   \node[circle,draw,label=below:$v_2$] (v3) at (-15,2) {};
+%   \node[circle,draw,label=below:$v_6$] (v4) at (-14,0) {};
+%   \node[circle,draw,label=below:$v_3$] (v5) at (-19,0) {};
+%   \node[circle,draw,label=below:$v_4$] (v6) at (-17,0) {};
+%   \node[circle,draw,label=below:$v_5$] (v7) at (-16,0) {};
+
+%   \draw  (v1) edge (v2);
+%   \draw  (v1) edge (v3);
+%   \draw  (v2) edge (v5);
+%   \draw  (v2) edge (v6);
+%   \draw  (v3) edge (v4);
+%   \draw  (v3) edge (v7);  
+  
+%   \node at (-16.5,-1) {\small $T_7$};
+
+% %   \node[circle,draw,fill=black!50,label=below:$v_0$] (v21) at (-10,3.5) {};
+% %   \node[circle,draw,fill=black!70,label=below:$v_a$] (v22) at (-12,2) {};
+% %   \node[circle,draw,fill=black!70,label=below:$v_b$] (v23) at (-9,2) {};
+%   \node[circle,draw,label=below:$v_0$] (v21) at (-10,3.5) {};
+%   \node[circle,draw,label=below:$v_a$] (v22) at (-12,2) {};
+%   \node[circle,draw,label=below:$v_b$] (v23) at (-9,2) {};
+%   \node[circle,draw,label=below:$v_c$] (v28) at (-11,2) {};
+%   \node[circle,draw,label=below:$v_d$] (v29) at (-8,2) {};
+% %   \node[circle,draw,fill=black!100,label=below:$v_0$] (v24) at (-8,0) {};
+% %   \node[circle,draw,fill=black!100,label=below:$v_1$] (v25) at (-13,0) {};
+% %   \node[circle,draw,fill=black!100,label=below:$v_2$] (v26) at (-11,0) {};
+% %   \node[circle,draw,fill=black!100,label=below:$v_3$] (v27) at (-10,0) {};
+%   %\node[circle,draw,label=below:$v_0$] (v24) at (-8,0) {};
+%   \node[circle,draw,label=below:$v_1$] (v25) at (-13,0) {};
+%   \node[circle,draw,label=below:$v_2$] (v26) at (-11,0) {};
+%   \node[circle,draw,label=below:$v_3$] (v27) at (-10,0) {};
+%   \node[circle,draw,label=below:$v_4$] (v31) at (-12,0) {};
+%   \node[circle,draw,label=below:$v_5$] (v32) at (-8,0) {};
+%   \node[circle,draw,label=below:$v_6$] (v33) at (-9,0) {};
+%   \node[circle,draw,label=below:$v_7$] (v34) at (-7,0) {};
+
+%   \draw  (v21) edge (v22);
+%   \draw  (v21) edge (v23);
+%   \draw  (v22) edge (v25);
+%   \draw  (v22) edge (v26);
+%   %\draw  (v23) edge (v24);
+%   \draw  (v23) edge (v32);
+%   \draw  (v23) edge (v27);  
+%   \draw  (v21) edge (v28);
+%   \draw  (v21) edge (v29);  
+%   \node at (-10.5,-1) {\small $T_{12}$};
+%   \draw  (v28) edge (v31);
+%   \draw  (v29) edge (v34);
+%   \draw  (v23) edge (v33);
+%   \node[circle,draw,label=below:$v_8$] (v8) at (-6,0) {};
+%   \draw  (v29) edge (v8);
+% \end{tikzpicture}
+% \caption{Exemplo de Árvores}
+% \label{fig-arvore-b4}
+% \end{figure}
+
+% % Esse limite só é aplicável a árvores, carecendo de estudos mais aprofundados se é válido para qualquer grafo, caso a Conjectura~\ref{conject-sup} se confirme, um limite constante pode ser estabelecido para todos os grafos de diâmetro 2. Sabendo que para qualquer grafo de diâmetro 2, consiste de uma árvore de profundidade 2 no máximo 2, com o acréscimo de algumas arestas, ou seja uma busca em largura resultaria em uma árvore geradora com uma profundidade máxima 2. Supondo o número de Caratheódory em grafos de diâmetro 2, tenha alguma relação com a profundidade da maior subárvore estritamente binária do grafo, podemos então estabelecer uma conjectura para esse parâmetro.
+
+% % \begin{conjecture}
+% %     Seja $T$ uma árvore e $G$ um supergrafo de $T$ tal que $V(G)=V(T)$ então $c(G) \le c(T)$.
+% %     \label{conject-sup}
+% % \end{conjecture}
+
+
+% \begin{conjecture}
+%     Seja $G$ um grafo de diâmetro 2 então $c(G) \le 4$.
+% \end{conjecture}
+
+% Deixando de lado conjecturas e partindo dos resultados obtidos no capítulo anterior, podemos explorar uma importante propriedade de qualquer conjunto de Carathéodory e obter resultados para o número de Carathéodory. 
+
+Sabe-se que um conjunto de Carathéodory não possui nenhum subconjunto próprio, tal que esse subconjunto é um conjunto envoltório\cite{Barbosa2012}. Em outras palavras, se $S$ é um conjunto de Carathéodory então $S$ não contém nenhum subconjunto $S^\prime \subset S$ tal que $H(S^\prime)=V(G)$. Outra propriedade derivada sobre os conjuntos de Carathéodory é que nenhum vértice $x$ de um conjunto de Carathéodory pode pertencer ao fecho convexo do conjunto menos $x$, em outras palavras se $S$ é um conjunto de Carathéodory,
+$\not \exists x \in S$ tal que $x\in H(S\setminus\{x\})$.
+
+%Podemos nos valer de alguns resultados do número envoltório, de forma a identificar um valor $x$ tal que $\forall S \subset V(G)||S|>x$ $S$ é um conjunto envoltório. Se para todo subconjunto $|S|>x$ temos $|S|\ge x$ envoltório então só é possível existir um conjunto Carathéodory $S^\prime$ se $|S^\prime| \le x-1$.
+
+\begin{observation}
+ \label{prop:partial} 
+Considere $G$ e $S \subseteq V(G)$. Se $S$ é um conjunto de Carathéodory, então $\forall v \in S$ temos que $v \notin H(S\setminus \{v\})$.
+ \end{observation}
+
+%Podemos fazer uma modificação no Algoritmo ~\ref{alg:conjunto-envoltoria-dominante}, de forma a identificar um valor $x$ tal que $\forall S \subset V(G)||S|>x$ $S$ é um conjunto envoltório. Se para todo subconjunto $|S|>x$ temos $|S|\ge x$ envoltório então só é possível existir um conjunto Carathéodory $S^\prime$ se $|S^\prime| < x$.
+%% Resultado geral para grafos de diâmetro 2?
+% Considere o Algoritmo~\ref{alg:max-posivel-caratheodory}, ele iterativamente vai adicionando vértices ao conjunto $S$, até que não seja mais possível. Podemos ver que o vértice adicionado na i-ésimo iteração não pertencia ao conjunto envoltória da (i-1)-iteração. Com isso conseguimos garantir que $v_i \not \in H(S_i\setminus v_i)$, que é um dos requisitos para que $S_i$ seja um conjunto de Carathéodory, conforme Proposição ~\ref{prop:partial}.
+
+% \begin{algorithm2e}[h]
+%     \SetAlFnt{\tiny}
+%     \SetAlCapFnt{\small}
+%     \SetAlCapNameFnt{\small}
+%     \SetAlgoLined
+%     \DontPrintSemicolon
+%     \LinesNumbered
+%     \SetAlgoLined
+%     \BlankLine
+%     \Entrada{$G(V,E)$}
+%     \Saida{$S^\prime$ tal que $N(H(S^\prime)) = V(G)$}
+%     \BlankLine
+%     $c_i \gets 0 $\\
+%     $S_i \gets \emptyset$ \\
+%     $R_i \gets V$ \\
+%     \Enqto{$V(G) \setminus H_i \ne \emptyset$}{
+%          $v \gets v\in R_i $\\
+%          $c_i \gets i + 1 $\\         
+%          $S_i \gets S_{i-1} \cup \{ v \}$\\
+%          $H_i \gets H(S_i)$ \\         
+%          $R_i \gets V \setminus N(H_i) $ \\
+%     }
+%     \Retorna{$S_i$} 
+% \caption{$PossivelConjuntoCarathéodory(G(V,E))$}
+% \label{alg:max-posivel-caratheodory}
+% \end{algorithm2e} 
+
+% Verificando iterativamente o conjunto 
+
+
+% \begin{theorem}
+%     Seja $G$ um grafo de diâmetro 2, e grau mínimo $\delta$ então $c(G) \le \delta + 1$.
+% \end{theorem}
+% \begin{proof}
+% Supomos por contradição que $G$ possua um conjunto de Carathéodory de cardinalidade $\delta + 2$.
+% \end{proof}
+
+% \begin{theorem}
+%     Seja $G$ um grafo então $\delta$ então $c(G) \le 2\time i(G) + 1$.
+% \end{theorem}
+
+Neste capítulo, estudamos o número de Carathéodory para os grafos de diâmetro 2. Inicialmente, apresentaremos uma consequência da Proposição~\ref{coro-env-gd2-c5-h2} para obter o número de Carathéodory dos grafos Maximais sem triângulo $C_5[p,q,r,s,t]$.
+
+
+\begin{coro}
+\label{coro-carat-gd2-c5-h2}
+    %Seja $G$ um grafo maximal sem triângulo $C_5[p,q,r,s,t]$ então $c(G) \le 3$.
+    Seja $G$ um grafo maximal sem triângulo $C_5[p,q,r,s,t]$ e $p$, $q$, $r$, $s$ e $t$ forem todos maior que 1 então $c(G) = 2$.
+\end{coro}
+\begin{proof}
+
+Sabemos, pela Proposição~\ref{coro-env-gd2-c5-h2} que quaisquer dois vértices $v_0$ e $v_1$, tais que $v_0v_1 \notin E(C_5)$ é um conjunto envoltório. Se existir um conjunto de Carathéodory $X=\{v_0, v_1, v_2\}$, os vértices $v_0, v_1$ e $v_2$ devem pertencer a partições diferentes. Sem perda de generalidade, se $v_0 \in P$ então $v_1 \in Q \cup T$. Seja $v_1 \in Q$. Então $v_2$ não pode pertencer a $R$, pois $\{v_0, v_1\}$ seria um conjunto envoltório, e nem pertencer a $S$ ou $T$, pois $\{v_1,v_2\}$ seria um conjunto envoltório. Portanto, qualquer conjunto de Carathéodory tem cardinalidade no máximo 2.
+\end{proof}
+
+% Partindo dessa primeira proposição, podemos concluir que é possível em alguns casos obter o número de Carathéodory a partir de um limite estabelecido para o número envoltório.
+
+Iniciando do caso base dos grafos de diâmetro 2, vamos analisar o número envoltória para grafos de diâmetro 2 com vértice de corte.
+
+\begin{proposition} 
+Considere $G$ um grafo de diâmetro 2 com vértice de corte. Então $c(G) = 2$.
+\label{prop:carat}
+\end{proposition}
+\begin{proof} 
+   Seja $G$ um grafo de diâmetro 2 e $c \in V(G)$ o vértice de corte de $G$. Conforme Proposição~\ref{prop:diametro2}\ref{pro-diam-2-itemd} $c$ é adjacente a todos os demais vértices de $G$. Por contradição, supomos $S=\{u,v,w\}$ um conjunto de Carathéodory de $G$ e $p \in \partial H(S)$.
+   
+   Podemos perceber facilmente que $p \ne c$ e $p \not\in S$, pois $c \in H(\{x,y\})$, com $x,y \in S\setminus \{c\}$. Considere $G_1, G_2, \cdots, G_k$ as componentes de $G \setminus \{c\}$. Se $|G_i \cap S| \geq 2$ então, como $d(c)=n-1$ e $G_i$ é conexa, um dos vértices de $S$, digamos $u$, pertencerá a $H(S\setminus u)$ e $S$ não será um conjunto de Carathéodory. Logo cada dois vértices de $S$ pertencem a componentes distintas de $G-c$. Se $p$ pertence a uma mesma componente que algum vértice $x \in S$, então $p \in H(\{x,y\})$, tal que $y \in S \setminus x$. Logo, $p, u, v$ e $w$ pertencem a componentes distintas de $G \setminus \{c\}$.
+  % Sem perda de generalidade $p \in V(G_1)$ logo $u,v,w \not \in V(G_1)$, por contradição supomos $u,p \in V(G_1)$, temos $p \in H(\{u,v\})$ o que é uma contradição pois $p \in \partial H(S)$.
+   Sem perda de generalidade, considere que $c \in I(\{u,v\})$. Como $pc \in E(G)$ e $p \in \partial H(S)$, deve existir um caminho de $p$ a $w$ que não passe por $c$. Uma contradição pois $c$ é vértice de corte.
+   
+   %temos então   observe que quaisquer dois vértices de $S$ $u,w \in G_i$, temos que $H(\{u,w\}) = G_i \cup \{v\}$, logo se $S \subseteq G_i$, para algum $1\leq i \leq k$, $|S|\leq 2$. Por fim, seja $X \subseteq \{1, 2, \cdots, k\}$ e considere que $S= \bigcup G_i$, tal que $i \in X$ e $S \cap G_i \neq \emptyset$, para todo $i \subseteq X$. Então $H(S)= (\bigcup G_i) \cup \{v\}$ e para todo $u \in H(S)\backslash S$ e $u \in G_j$, $u \in H(\{u_1, u_2\})$, onde $u_1 \in G_j$ e $u_2 \in G_l$, para $l \neq j$.
+\end{proof}
+
+Com isso concluímos brevemente os resultados para o número de Carathéodory levantados até o término deste trabalho. Conjecturas levantadas e não concluídas estão mencionadas nos trabalhos futuros. Veremos nos próximos dois capítulos os algoritmos e implementações realizadas. 
+
+% No capítulo anterior apresentamos resultados sobre o número envoltório para grafos maximais sem triângulo, que foi apoiado em uma propriedade restritiva, são grafos de diâmetro 2, sem triângulo e não possuem um $C_6$ como subgrafo induzido. Usando apenas a restrição de diâmetro 2 e não possuir um $C_6$ como subgrafo induzido, podemos abarcar um conjunto maior de grafos de diâmetro 2, tal qual o grafo da Figura~\ref{fig-exemplo-md2}. Utilizando essas restrições vamos demonstrar que esses grafos possuem um conjunto de Carathéodory de cardinalidade no máximo 4. Primeiramente vamos elencar as propriedades e possíveis configurações para um conjunto de Carathéodory.
+
+% \begin{proposition} 
+% \label{prop-g-induzido}
+% Seja $S \subseteq V(G)$ um conjunto de Carathéodory. Então $G[S]= l \cdot K_1 \cup \; m \cdot K_2$.
+% \end{proposition}
+% \begin{proof}
+%       Suponha por contradição que exista uma componente conexa $C_1$ em $G[S]$, tal que $C_1$ possui mais do que dois vértices. Consequentemente, em $C_1$, existe um caminho $P_k=v_1,v_2,v_3,..,v_k$, $k \ge 3$. Com isso teremos que para algum vértice $w \in S$, $w \in H(S)\setminus w$· O que é uma contradição pois $S$ não seria um conjunto de Carathéodory.
+% \end{proof}
+
+% Seguindo da Proposição ~\ref{prop-g-induzido}, podemos derivar os possíveis subgrafos induzidos por um conjunto de Carathéodory de cardinalidade 5, ilustrados nas Figuras~\ref{fig:spart5}, \ref{fig:spart4} e \ref{fig:spart3}.
+
+
+% \begin{coro} 
+% \label{prop-carat-5}
+% Seja $S \subseteq V(G)$ com $|S|=5$. Se $S$ é um conjunto de Carathéodory então a relação de adjacência entre os vértices de $S$ só pode ser uma das seguintes:
+% \begin{itemize}
+% \item relação-1: $G[S]=5\cdot K_1$.
+% \item relação-2: $G[S]=3\cdot K_1 \cup K_2$.
+% \item relação-3: $G[S]=K_1 \cup 2\cdot K_2$.
+% \end{itemize}
+% \end{coro}
+
+% \begin{figure}[h]
+% \caption{$G[S]=5\cdot K_1$}
+% \centering
+% \label{fig:spart5}
+%     \begin{tikzpicture}[]
+%         %% vertices
+%         \node[draw,ellipse,text height=2cm, minimum width = 8cm,label=above:S] (s) at (0,0) {};
+%         \node[circle,draw,minimum size=0.95cm,label=above:$S_1$] (s1) at (-2,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_1$] (v1) at (-2,0) {};
+%         \node[circle,draw,minimum size=0.95cm,label=above:$S_2$] (s2) at (-1,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_2$] (v2) at (-1,0) {};
+%         \node[circle,draw,minimum size=0.95cm,label=above:$S_3$] (s3) at (0,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_3$] (v3) at (0,0) {};
+%         \node[circle,draw,minimum size=0.95cm,label=above:$S_4$] (s4) at (1,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_4$] (v4) at (1,0) {};
+%         \node[circle,draw,minimum size=0.95cm,label=above:$S_5$] (s5) at (2,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_5$] (v4) at (2,0) {};
+%     \end{tikzpicture}
+% \end{figure}
+
+
+% \begin{figure}[h]
+% \caption{$G[S]=3\cdot K_1 \cup K_2$}
+% \label{fig:spart4}
+% \centering
+%     \begin{tikzpicture}[]
+%         %% vertices
+%         \node[draw,ellipse,text height=2cm, minimum width = 8cm,label=above:S] (s) at (0,0) {};
+%         \node[ellipse,draw,text height=1cm, minimum width = 1.9cm,label=above:$S_1$] (s1) at (-1.5,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_1$] (v1) at (-2,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_2$] (v2) at (-1,0) {};
+%         \draw[draw=black]  (v1) edge node[below,sloped]{$a_1$} (v2);
+
+%         \node[circle,draw,minimum size=0.95cm,label=above:$S_2$] (s3) at (0,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_3$] (v3) at (0,0) {};
+
+%         \node[circle,draw,minimum size=0.95cm,label=above:$S_3$] (s4) at (1,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_4$] (v4) at (1,0) {};
+
+%         \node[circle,draw,minimum size=0.95cm,label=above:$S_4$] (s5) at (2,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_5$] (v4) at (2,0) {};
+%     \end{tikzpicture}
+
+% \end{figure}
+
+
+% \begin{figure}[h]
+% \caption{$G[S]=K_1 \cup 2\cdot K_2$}
+% \label{fig:spart3}
+% \centering
+%     \begin{tikzpicture}[]
+%         %% vertices
+%         \node[draw,ellipse,text height=2cm, minimum width = 8cm,label=above:S] (s) at (0,0) {};
+%         \node[ellipse,draw,text height=1cm, minimum width = 1.9cm,label=above:$S_1$] (s1) at (-1.5,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_1$] (v1) at (-2,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_2$] (v2) at (-1,0) {};
+%         \node[ellipse,draw,text height=1cm, minimum width = 1.9cm,label=above:$S_2$] (s2) at (0.5,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_3$] (v3) at (0,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_4$] (v4) at (1,0) {};
+%         \node[circle,draw,minimum size=0.95cm,label=above:$S_3$] (s5) at (2,0) {};
+%         \node[circle,draw,fill=black,minimum size=2.5pt,inner sep=0pt,label=above:$v_5$] (v5) at (2,0) {};
+
+%         \draw[draw=black]  (v1) edge node{} (v2);
+%         \draw[draw=black]  (v1) edge node[below,sloped]{$a_1$} (v2);
+%         \draw[draw=black]  (v3) edge node[below,sloped]{$a_2$} (v4);
+%     \end{tikzpicture}
+% \end{figure}
+
+
+
+
+% \begin{theorem}
+%     Seja $G$ um grafo com diâmetro 2, sem vértice de corte e sem $C_6$ como subgrafo induzido, então $c(G) \le 4$.
+% \end{theorem}
+% \begin{proof}    
+%     Provaremos por contradição que $G$ não possui um conjunto $S$ de Carathéodory de cardinalidade cinco. Suponha $S$ um conjunto de Carathéodory tal que $|S|=5$. Conforme Proposição ~\ref{prop-carat-5} se $S$ é um conjunto de Carathéodory de tamanho 5 então existem 3 possíveis situações em que se encontram seus vértices. Analisaremos individualmente elas.
+    
+%     {\bf Caso 1: $G[S]=5\cdot K_1$}. 
+    
+%     Considere $S=\{v_1, v_2, v_3, v_4, v_5\}$. Como $v_1$ e $v_2$ não são adjacentes então existe um vizinho $w_1$ comum a ambos, de forma que $\{v_1,v_2, w_1\} \subseteq H(\{v_1,v_2\})$. Vamos dividir os vértices de $G$ em 3 conjuntos, $H=H(\{v_1, v_2\})$, $N=N(H)\setminus H$ e $O=V(G)\setminus N[H]$. Veja Figura~\ref{fig-divisao-conf-3}(a).
+%     Suponha que algum vértice, $v_3, v_4$ ou $v_5$ esteja em $O$. Sem perda de generalidade, considere que $v_3 \in O$. Como $G$ é um grafo de diâmetro 2, para cada vértice em $O$ deve existir um vértice vizinho em $N$ adjacente a cada vértice de $H$. Sejam os vértices $a$ e $b$, tal que $v_3a, av_1, v_3b, bv_2 \in E(G)$ e considere o ciclo $C=v_3,a,v_1,w,v_2,b$. Primeiramente, note que $v_1v_2, v_2v_3, v_1v_3 \notin E(G)$. Observe que se existissem as arestas $bw_1, bv_1, aw_1, av_2$, os vértices $a$ e $b$ pertenceriam à $H$. Ainda, se $w_1v_3 \in E(G)$ então $v_3 \in N$. Por fim, $ab \notin E(G)$ pois (????). Logo o ciclo $C$ é um ciclo sem corda e $G$ possui um $C_6$ como subgrafo induzido. Uma contradição.
+%     Logo, $v_3$, $v_4$ e $v_5$ só podem estar em $N$. % como para estar em $N$ todo vértice precisar ser adjacente a um vértice em $H$ a única opção é que eles sejam adjacentes a $w_1$, conforme Figura~\ref{fig-divisao-conf-3}(b).*****Não necessariamente****
+    
+%     %%**************PARAMOS AQUI***************
+    
+%     Como não existe vértice de corte, consequentemente não existe vértice de grau 1, todos os 5 vértices de $S$ precisam ter necessariamente outros vizinhos além de $w_1$. Os demais vizinhos de $v_3$, $v_4$ ou $v_5$ não podem estar todos em $N$, cada um dos 3 precisa ter ao menos um vizinho $O$, por ser um conjunto de Carathéodory esses vizinhos não podem ser iguais, conforme Figura~\ref{fig-divisao-conf-3}(b). Se $o_1=o_2=o_3$ então $v_3 \in H(v_4,v_5)$ o que não é possível pois S é um conjunto de Carathéodory. Seja $o_1 \ne o_2$ e $o_2=o_3$, se $o_1$ adjacente a $o_2$ então S não é Carathéodory e se $o_1$ e $o_2$ não são adjacentes, eles tem um vertices $o_4$ e com isso temos um Ciclo $C_6$ sem corda formado por $<w_1,v_4,o_2,o_4,o_1,v_3>$, então temos que para S ser Carathéodory $o_2 \ne o_3$.
+%     Se $o_1$ adjacente a $o_2$ e $o_3$ adjacente então temos a formação de um Ciclo $C_6$ sem corda. 
+        
+% {\bf Caso 2: $G[S]=3\cdot K_1 \cup 2\cdot K_2$}.
+
+%     Na relação-2 temos $S=\{v_1,v_2,v_3,v_4,v_5\}$ tal que $v_1$ e $v_2$ são vértices adjacentes, demais vertices não são adjacentes entre si. Por se tratar de um grafo de diâmetro 2 e como $v_2$ e $v_3$ não são adjacentes, logo existe um vértice $w_1 \in N(v_2) \cap N(v_3)$. De maneira análoga $\exists w_2 \in N(v_3) \cap N(v_5)$, $\exists w_3 \in N(v_2)\cap N(v_5)$ e $\exists w_4 \in N(v_1)\cap N(w_2)$. Para uma melhor visualização está demonstrado visualmente na Figura~\ref{fig-carat-conf1-1}. 
+
+% Como $S$ é um conjunto de Carathéodory $w_1$, $w_2$, $w_3$ e $w_4$ são distintos. Supomos que $w_1$ e $w_2$ sejam o mesmo vértice $w_1=w_2$, para que não haja ambiguidade vamos renomear esse vértice para $w_i$ tal que $w_i=w_1=w_2$. Assim temos que $w_i \in N(v_2) \cap N(v_3) \cap N(v_5)$. Se $w_i \in N(v_2) \cap N(v_3) \cap N(v_5)$  então $w_i \in N(v_3) \cap N(v_5)$ logo temos $w_i \in H(\{v_3, v_5\})$. Derivadamente temos que $v_2 \in H(\{v_1,v_3,v_5\})$, pois $v_2$ é adjacente a $w_i$ e $v_1$, o que é uma contradição dado que S é um conjunto de Carathéodory e $v_2 \in S$ e $v_2 \in H(S \textbackslash \{ v_2 \})$, portanto $w_1 \ne w_2$. De forma análoga podemos demonstrar e concluir  que $w_1 \ne w_3$, $w_1 \ne w_4$, $w_2 \ne w_3$ e $w_3 \ne w_4$.
+
+% Por $S$ ser um conjunto de Carathéodory, também temos que $w_1$, $w_2$, $w_3$ e  $w_4$ além de distintos, não são adjacentes. 
+% De forma semelhantemente a demonstração anterior, supomos que $w_1w_2 \in E(G)$ então temos $w_1 \in H(\{v_3, v_5\})$, consequentemente $v_2 \in H(\{v_1,v_3,v_5\})$. Com isso $v_2 \in S$ e $v_2 \in H(S \textbackslash \{v_2\})$ recaindo na mesma contradição anterior. Dessa forma temos que $w_1$ e $w_2$ não são adjacentes, de forma análoga podemos demonstrar que $w_1$ não é adjacente a $w_3$ ou $w_4$ e que $w_3$ não é adjacente a $w_2$ ou $w_4$.
+
+%     Temos então na relação-1 a formação de dois ciclos $C_6$ sem corda $C_6=v_1v_2w_1v_3w_2w_4$ e $C_6=v_2w_3v_5v_3w_2v_3$ o que é uma contradição, 
+% pois por definição $G$ é um grafo sem $C_6$. Na relação-3 de forma análoga a relação-2, não há possibilidade de um conjunto de Carathéodory sem a formação de um ciclo $C_6$ sem corda. Com isso podemos concluir que não é possível ter um conjunto de Carathéodory de tamanho 5 em um grafo de diâmetro 2, sem a formação de $C_6$ sem corda. 
+% \end{proof}
+
+
+% \begin{theorem}
+%     Seja $G$ um grafo e $p(G)$ a profundidade máxima de $G$, então $c(G) \le 2^{p(G)}$.
+% \end{theorem}
+% \begin{proof} 
+% \end{proof}  
+
+% \begin{theorem}
+%     Seja $G$ um grafo de diâmetro 2, então $c(G) \le 4$.
+% \end{theorem}
+% \begin{proof} 
+% \end{proof}  
+
+
+
+% \begin{figure}[h]
+% \centering
+% \begin{tikzpicture}
+%    \node[circle,draw,fill=black!60,label=left:$w_1$] (v1) at (-13,0) {};
+%     \node[circle,draw,fill,label=left:$v_1$] (v2) at (-13.5,0.6) {};
+%     \node[circle,draw,fill,label=left:$v_2$] (v3) at (-13.5,-0.6) {};
+
+%     \draw  (v1) edge (v2);
+%     \draw  (v1) edge (v3);
+
+%     \draw[dotted]  (-13.5,0) ellipse (1 and 1);
+%     \draw[dotted]  (-13,0) ellipse (1.5 and 1.5);
+%     \draw[dotted]  (-12.5,0) ellipse (2 and 2);
+%     \node at (-13.5,1.1) {\tiny $H$};
+%     \node at (-13,1.6) {\tiny $N$};
+%     \node at (-12.5,2.1) {\tiny $O$};
+
+%     \node[circle,draw,fill=black!60,label=left:$w_1$] (v11) at (-8.5,0) {};
+%   \node[circle,draw,fill,label=left:$v_1$] (v12) at (-9,0.6) {};
+%   \node[circle,draw,fill,label=left:$v_2$] (v13) at (-9,-0.6) {};
+%   \draw  (v11) edge (v12);
+%   \draw  (v11) edge (v13);
+%   \node[circle,draw,fill=black!30,label=$v_3$] (v14) at (-8,1) {};
+%   \node[circle,draw,fill=black!30,label=$v_4$] (v19) at (-7.5,0) {};
+%   \node[circle,draw,fill=black!30,label=$v_5$] (v18) at (-8,-1) {};
+%   \node[circle,draw,label=$o_1$] (v15) at (-7,1) {};
+%   \node[circle,draw,label=$o_2$] (v16) at (-6.5,0) {};
+%   \node[circle,draw,label=$o_3$] (v17) at (-7,-1) {};
+%   \draw[dotted]  (-9,0) ellipse (1 and 1);
+%   \draw[dotted]  (-8.5,0) ellipse (1.5 and 1.5);
+%   \draw[dotted]  (-8,0) ellipse (2 and 2);
+
+%   \node at (-9,1.1) {\tiny $H$};
+%   \node at (-8.5,1.6) {\tiny $N$};
+%   \node at (-8,2.1) {\tiny $O$};
+
+%   \draw  (v11) edge (v14);
+%   \draw  (v11) edge (v19);
+%   \draw  (v18) edge (v11);
+%   \draw  (v14) edge (v15);
+%   \draw  (v19) edge (v16);
+%   \draw  (v18) edge (v17);
+%   \node at (-12.5,-3) {(a)};
+%   \node at (-8,-3) {(b)};
+
+%   \node[circle,draw,fill=black!60,label=left:$w_1$] (v21) at (-4,0) {};
+%   \node[circle,draw,fill,label=left:$v_1$] (v22) at (-4.5,0.6) {};
+%   \node[circle,draw,fill,label=left:$v_2$] (v23) at (-4.5,-0.6) {};
+
+%   \draw  (v21) edge (v22);
+%   \draw  (v21) edge (v23);
+
+%   \node[circle,draw,fill=black!30,label=right:$v_3$] (v24) at (-3,0.5) {};
+%   \node[circle,draw,fill=black!30,label=right:$v_4$] (v29) at (-3,0) {};
+%   \node[circle,draw,fill=black!30,label=right:$v_5$] (v28) at (-3,-0.5) {};
+%   \node[circle,draw,label=right:$o_1$] (v25) at (-2.1,1) {};
+%   \node[circle,draw,label=right:$o_2$] (v26) at (-1.9,0) {};
+%   \node[circle,draw,label=right:$o_3$] (v27) at (-2.1,-1) {};
+
+%   \draw[dotted]  (-4.5,0) ellipse (1 and 1);
+%   \draw[dotted]  (-4,0) ellipse (1.5 and 1.5);
+%   \draw[dotted]  (-3.5,0) ellipse (2 and 2);
+
+%   \node at (-5,1) {\tiny $H$};
+%   \node at (-4.5,1.5) {\tiny $N$};
+%   \node at (-4,2) {\tiny $O$};
+
+%   \node at (-3.5,-3) {(c)};
+%   \node[circle,draw,label=above:$n_1$] (v4) at (-3.8,1) {};
+%   \node[circle,draw,label=above:$n_3$] (v5) at (-3.8,-1) {};
+%   \draw  (v4) edge (v25);
+%   \draw  (v4) edge (v22);
+%   \draw  (v5) edge (v27);
+%   \draw  (v5) edge (v23);
+%   \draw  (v21) edge (v24);
+%   \draw  (v29) edge (v21);
+%   \draw  (v21) edge (v28);
+%   \draw  (v28) edge (v27);
+%   \draw  (v29) edge (v26);
+%   \draw  (v24) edge (v25);
+% \end{tikzpicture}
+% \caption{Relação-1 de um conjunto Carathéodory cardinalidade 5 em um grafo de diâmetro 2}
+% \label{fig-divisao-conf-3}
+% \end{figure}
+
+
+% \begin{figure}[h]
+% \centering
+% \begin{tikzpicture}
+%     \node[circle,draw,fill,label=left:$v_1$,minimum size=2.5pt,inner sep=0pt] (v1) at (-2,3) {};
+%     \node[circle,draw,fill,label=left:$v_2$,minimum size=2.5pt,inner sep=0pt]  (v2) at (-2,2) {};
+%     \node[circle,draw,fill,label=left:$v_3$,minimum size=2.5pt,inner sep=0pt]  (v3) at (-2,1) {};
+%     \node[circle,draw,fill,label=left:$v_5$,minimum size=2.5pt,inner sep=0pt]  (v5) at (-2,0) {};
+%     \node[circle,draw,fill,label=right:$w_1$,minimum size=2.5pt,inner sep=0pt]  (v7) at (-1.5,1.5) {};
+%     \node[circle,draw,fill,label=left:$w_2$,minimum size=2.5pt,inner sep=0pt]  (v4) at (-3,0.5) {};
+%     \node[circle,draw,fill,label=right:$w_3$,minimum size=2.5pt,inner sep=0pt]  (v6) at (-0.5,1) {};
+%     \node[circle,draw,fill,label=left:$w_4$,minimum size=2.5pt,inner sep=0pt]  (v8) at (-3.5,2) {};
+
+%     \draw  (v1) edge (v2);
+%     \draw  (v3) edge (v4);
+%     \draw[out=0,in=270]  (v5) edge (v6);
+%     \draw[out=0,in=90]  (v2) edge (v6);
+%     \draw  (v2) edge (v7);
+%     \draw  (v7) edge (v3);
+%     \draw  (v4) edge (v5);
+%     \draw  (v8) edge (v4);
+%     \draw  (v8) edge (v1);
+% \end{tikzpicture}
+% \caption{Relação-2 e Relação-3 de um conjunto Carathéodory cardinalidade 5 em um grafo de diâmetro 2}
+% \label{fig-carat-conf1-1}
+% \end{figure}
+

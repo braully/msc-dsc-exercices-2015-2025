@@ -1,0 +1,121 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+%\usepackage[utf8]{inputenc}
+\usetheme{Pittsburgh}
+\usecolortheme{default}
+\usefonttheme[onlymath]{serif}
+\usepackage[portuguese,ruled]{algorithm2e}
+\usepackage{graphics}
+\usepackage{graphicx,url}
+\usepackage{pgfplots}
+\usepgfplotslibrary{external}
+\usepackage{adjustbox}
+\usepackage[alf]{abntex2cite}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{txfonts}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage{rotating}
+\usepackage{multicol}
+\usepackage{multirow}
+%\usepackage{amsmath,amssymb,amsfonts,amstext,amsthm}
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+
+
+\SetAlgoCaptionSeparator{.}
+%\renewcommand\AlCapFnt{\tiny\sffamily}
+\renewcommand\AlCapFnt{\small}
+\renewcommand{\AlCapSty}{\textsc}
+\SetAlFnt{\tiny\sffamily}
+\renewcommand*{\algorithmcfname}{Alg}
+
+%\newtheorem{proposition}{Proposição}
+\newtheorem{theo}{Teorema}
+\newtheorem{lem}{Lema}
+\newtheorem{proposition}{Proposição}
+\newtheorem{observation}{Observação}
+\newtheorem{properties}{Propriedades}
+%\newtheorem{coro}{Corolário}
+\newtheorem{coro}{Corolário}
+\newtheorem{conjecture}{Conjectura}
+
+\usetikzlibrary{arrows,shapes,backgrounds,calc,snakes}
+
+\usepgfplotslibrary{fillbetween}
+\usepackage{pgfplots}
+\usepgfplotslibrary{external}
+\usepackage{tikz}
+
+
+% ---
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+\title{Implementações de Parâmetros na Convexidade $P_3$}
+\author{Braully Rocha da Silva \\  %
+ {\footnotesize Profa. Dra. Erika Morais Martins Coelho} \\ %
+ {\footnotesize (orientadora)}\\ %
+ {\footnotesize Prof. Dr. Hebert Coelho da Silva} \\ %
+ {\footnotesize (coorientador)}
+}
+\institute{Universidade Federal de Goiás \par Instituto de Informática}
+%\date{\year}
+
+% ----------------- INÍCIO DO DOCUMENTO --------------------------------------
+\begin{document}
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}
+\begin{minipage}{1\linewidth}
+  \centering
+  \begin{tabular}{cc}
+    \begin{tabular}{c}
+      \includegraphics[width=3.0cm]{img/logo-ufg.png}
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+      \textbf{Universidade Federal do Brasil} \\ \textbf{Instituto de Informática}
+    \end{tabular}
+  \end{tabular}
+\end{minipage}
+\titlepage
+\end{frame}
+
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}{Sumário}
+\tableofcontents
+\end{frame}
+
+%\small{
+%/* Itens obrigatórios para qualificação:
+%\begin{itemize}
+%    \item{Título}
+%    \item{Descrição do problema de Pesquisa}
+%    \item{Revisão Bibliográfica}
+%    \item{Objetivo}
+%    \item{Abordagem de solução}
+%    \item{Cronograma de atividades}
+%\end{itemize}
+%*/
+%}
+
+\input{1-intro-apresentacao}
+\input{2-fundamentos-apresentacao}
+\input{2-revisao-apresentacao}
+\input{3-resultados-envoltorio.tex}
+\input{3-resultados-caratheodory.tex}
+\input{3-resultados-implementacao.tex}
+\input{4-conclusao-apresentacao}
+
+\end{document}

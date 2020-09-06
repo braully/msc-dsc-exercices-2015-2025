@@ -1,0 +1,420 @@
+%    \item{Seja D um conjunto dominante de G, para todo $v \in V(G)\setminus D$ tal que $N(v)\cap D$ é não vazio então $D \cup \{v\}$ é um conjunto envoltorio}
+%    \item{Seja $S \subseteq V(G)$ e D um conjunto de G, se $D \subseteq H(S)$ e $\exists v \in H(S)$ tal que $N(v) \setminus D \ne \emptyset$ então S é um conjunto envoltorio}    
+%    \item{Sejam vértices não adjacentes $v_1,v_2,v_3$ e $N(v_1)\cap N(v_2) \cap N(v_3)=\emptyset$, não existe dois pares de vértices distintos $v_4,v_5$ em $V(G) \setminus H(\{v_1, v_2, v_3\})$ tal que $v_5 \not \in H(\{v_1,v_2,v_3,v_4))$}
+    
+%	\item {Seja $A \subset V(G)$ e $H(A)\subset V(G)$ é um conjunto dominante então $A \cup \{w\}$ é um conjunto envoltório $\forall w \in V(G) \setminus H(A)$}
+%    \item {Seja $B \subset V(G)$ e $\forall u \in V(G) \setminus H(B) | N(u) \subseteq N[B]$ então $B \cup \{u\}$ é um conjunto envoltório}
+%    \item {Sejam vértices distintos $v_a,v_c \in V(G)$ e $\forall v_e \in V(G) \setminus N[v_a]| \cup N[v_c]$ e $N(v_e) \cap N[v_a] \cap N[v_c] \ne \emptyset $ então $H(\{v_a,v_c\})$ é um conjunto dominante}
+%	\item {Sejam vértices distintos $v_a,v_c \in V(G)$ e $\exists v_e \in V(G) \setminus N[v_a] \cup N[v_c]$ e $N(v_e) \cap N[v_a] \cap N[v_c] = \emptyset $ então $H(\{v_a,v_c,v_e\})$ é um conjunto dominante ou $\forall u \in V(G) \setminus H(\{v_a,v_c,v_e\}) | N(u) \subseteq N(H(\{v_a,v_c,v_e\}))$}
+
+
+
+%    Um conjunto S de envoltória em um grafo G de diâmetro 2 e grau mínimo 2, pode ser construído facilmente com três vértices. Seja $v \in V(G) | d(v) = \delta(G)$ então temos $N(v)$ um conjunto dominante de dois vértices. Na envoltória convexa de N(v) temos ao menos $N[v]$ que é um conjunto dominante, ou seja todo vértice de $V(G)$ tem ao menos um vizinho em $H(N(v))$, para qualquer outro vértice $v \in V(G) \setminus H(S)$, teremos outro conjunto dominante em $H(S)$, o que implica que temos um conjunto de envoltória S tal que |S|=3, portanto temos o teorema~\ref{teor-env-gd2} (a).
+
+%Se $H(N(v))=V(G)$ então $h(G)=2$. Se $H(N(v))\neq V(G)$ então $N(u) \subseteq H(N(v))$ $\forall u \in H(N(v)) \setminus V(G)$. $H(N(v) \cup \{u\})=V(G)$ e $|N(v) \cup \{u\}|=3$, o que implica que $h(G) \le 3$, provando o teorema ~\ref{teor-env-gd2} (b).
+
+%Por analogia a demonstração anterior, podemos demonstrar que G um grafo de diâmetro 2 e grau minimo $\delta > 3$. Com isso temos a prova do teorema ~\ref{teor-env-gd2} (c).
+
+%Caso $V(G) \textbackslash H(N(v)) \ne \emptyset$ então $\exists u \in V(G) \textbackslash H(N(v))$ como $N(v)$ é um conjunto dominante , são vértices que possuem apenas um vizinho em $H(N(v))$ e os demais vizinhos em $V(G) \textbackslash H(N(v))$.
+%Caso exista algum vértice, podemos compor um conjunto envoltório $S=N(v) \cup \{u\} | u,v \in V(G) | d(v) = \delta(G) | u \in V(G) \textbackslash H(N(v))$, com $|S| \le \delta(G) +1$.
+
+%Seja G um grafo de diâmetro 2 e grau minimo $\delta>1$ e dois vértices $a,c \in V(G)$ não adjacentes então $\exists b \in N(a) \cap N(c)$. Partindo desse principio, podemos separar os vértice de G em dois grupos $N[a] \cup N[c] \cup N[b]$ e $V(G) \setminus N[a] \cup N[c]$, conforme podemos ver na figura ~\ref{fig:setunion-2}.  Doravante para facilidade de referenciamento, vamos denotar os seguintes subconjuntos de V(G) como $A^\prime=N(v_a)\setminus N[v_c]\cup N[u]$, $C^\prime=N(c)\setminus N[a]\cup N[b]$, %$B^\prime=N(b)\setminus N[a]\cup N[c]$ e $V^\prime=V(G)\setminus N[v_a] \cup N[v_c] \cup N[u]$, $S^\prime=\{v_a, v_c, u\}$ e $I^\prime=(N[v_a]\cap N[v_c]) \cup (N[v_a]\cap N[v_b]) \cup (N[v_c] \cap N[v_a])$.
+    
+%\begin{figure}[h]
+%\centering
+%\label{fig:setunion-2}
+%\begin{tikzpicture}
+%  \draw  (-2,1.5) ellipse (3.5 and 1.5);
+%  \draw  (2,1.5) ellipse (3.5 and 1.5);
+%  \draw[rotate=90]  (3,0) ellipse (2 and 2);
+%  \node at (0,1.9) {$N[v_a] \cap N[v_c]$};
+%  \node at (-3.5,2) {$N(v_a) \setminus N[v_c] \cup N[u]$};
+%  \node at (3.5,2) {$N(v_c) \setminus N[v_a] \cup N[u]$};  
+%  \node at (-6,1.5) {$N[v_a]$};
+%  \node at (6,1.5) {$N[v_c]$};  
+%  \draw  (0,-2) ellipse (5 and 1.5);
+%
+%    \node[circle,draw,label=$v_z$] (w1) at (-2.3,0.5) {};
+%    \node[circle,draw,label=$v_d$] (w2) at (2.3,0.5) {};  
+%    \node[circle,draw,label=below:$v_e$]  (v3) at (0,-1.5) {};
+%  
+%   \node[circle,draw,label=below:$x_1$]  (x1) at (-2,-1.5) {};   
+%   \node[circle,draw,label=below:$x_2$]  (x2) at (2,-1.5) {};   
+%   \node[circle,draw,label=below:$x_3$]  (x3) at (0,-2.8) {};
+%  
+%  \draw  (w1) edge (v3);
+%  \draw  (w2) edge (v3);
+%  \draw  (v3) edge (x2);
+%  \draw  (x2) edge (x3);
+  
+%  \draw  (w1) edge[dotted] (x1);
+%  \draw  (w2) edge[dotted] (x1);
+    
+%  \node at (0,-4) {$V(G) \setminus (N[v_a] \cup N[v_c] \cup N[u])$};
+%  \node at (0,5.2) {N[u]};
+ 
+%  \node[circle,draw,fill,label=$v_a$] (v1) at (-1,2.7) {};
+%  \node[circle,draw,fill,label=$v_c$] (v2) at (1,2.7) {};
+%  \node[circle,draw,fill,label=$u$] (u) at (0,2.5) {};
+%  \node[circle,draw,label=$w_u$] (wu) at (-0.5,3.5) {};
+%  \draw (v1) edge (u);
+  
+%\node at (0,1.5) {$N[u]$};
+%\draw  (u) edge (v2);
+%\draw  (wu) edge (u);
+%\draw  (v1) edge (w1);
+%\draw  (v2) edge (w2);
+%\draw  (wu) edge (v3);
+%\node at (0,4.5) {\tiny $ N(u) \setminus N[v_a] \cup N[v_c] $};
+
+%\usetikzlibrary{calc}
+%\pgftransformreset
+%\node[inner sep=0pt,outer sep=0pt,minimum size=0pt,line width=0pt,text width=0pt,text height=0pt] at (current bounding box) {};
+%add border to avoid cropping by pdflibnet
+%\foreach \border in {0.1}
+%  \useasboundingbox (current bounding box.south west)+(-\border,-\border) rectangle (current bounding box.north east)+(\border,\border);
+%\newwrite\metadatafile
+%\immediate\openout\metadatafile=\jobname_BB.txt
+%\path
+%  let
+%    \p1=(current bounding box.south west),
+%    \p2=(current bounding box.north east)
+%  in
+%  node[inner sep=0pt,outer sep=0pt,minimum size=0pt,line width=0pt,text width=0pt,text height=0pt,draw=white] at (current bounding box) {
+%\immediate\write\metadatafile{\p1,\p2}
+%};
+%\immediate\closeout\metadatafile
+%\end{tikzpicture}
+%\caption{$N[v_a]$, $N[v_c]$, $N[u]$ e $V(G)$}
+%\end{figure}
+    
+%    Seja $X=\{v_a, v_c, u\}$, se $V(G) \setminus \bigcup_{w \in X} N[w]$ é vazio ou $\exists x \in X$ tal que $N(x) \setminus \bigcup_{y \in X \setminus \{x\}} N[y]$ então $\exists S \subseteq V(G)|H(S)=V(G)$ e $|S|=3$ então $h(G) \le 3$, pela proposição ~\ref{prop-env-d2}(a).
+
+% Se qualquer dos conjuntos $A^\prime$,$B^\prime$,$C^\prime$ ou $V^\prime$ é vazio então $\exists S \subseteq V(G)|H(S)=V(G)$ e $|S|=3$ então $h(G) \le 3$, pela proposição ~\ref{prop-env-d2}(a).
+    
+%    Os conjuntos $A^\prime$,$B^\prime$,$C^\prime$ e $V^\prime$ são não vazios. Se $\forall v \in V^\prime$ tal que $N(v) \setminus A^\prime \cup B^\prime \cup C^\prime \cup V^\prime$ então $H(\{a,c\})$ é um conjunto dominante então $\exists S \subseteq V(G)|H(S)=V(G)$ e $|S|=3$ portanto $h(G) \le 3$, pela proposição ~\ref{prop-env-d2}(a). Ou se $\exists v \in V^\prime$ tal que $N(v) \subseteq N[a] \cup N[b] \cup N[c]$ então $H(\{a, c, v\})=V(G)$ então $h(G) \le 3$, pela proposição ~\ref{prop-env-d2}(a).
+    
+%    Os conjuntos $A^\prime$,$B^\prime$,$C^\prime$ e $V^\prime$ são não vázios
+    %e $\forall v \in V^\prime$ $N(v) \setminus N[v_a] \cup N[v_c]$ é não vázio     
+%    e $\exists v_e \in V^\prime$ tal que $N(v_e) \cap I^\prime = \emptyset$ e $N(v_e) \cap V^\prime$. Então $\exists v_z \in N[v_a] \setminus N[v_c]$ e $\exists v_d \in N[v_c] \setminus N[v_a]$ tal que $\{v_z, v_d\} \subset N(v)$. Podemos então separar os vértice de G em dois grupos $N[v_a] \cup N[v_c] \cup N[v_e]$ e $V(G) \setminus N[v_a] \cup N[v_c] \cup N[v_e]$.
+    
+%    Seja $X=\{v_a,v_c,v_e,v_z,v_d\}$, se $V(G) \setminus \bigcup_{u \in X} N[u]$ é vazio ou $\exists u \in X$ tal que $N(u) \setminus \bigcup_{w \in X \setminus \{u\}} N[w]$ então $\exists S \subseteq V(G)|H(S)=V(G)$ e $|S|=3$ então $h(G) \le 3$, pela proposição ~\ref{prop-env-d2}(a).
+    
+%    Os conjuntos A, B, C, D, E e F são não vazios e seja $v_4 V(G) \in A\cup B \cup C \cup D \cup E \cup F$, se $V(G) \setminus \bigcup_{u \in X} N[u]$ é vazio ou $\exists u \in X$ tal que $N(u) \setminus \bigcup_{w \in X \setminus \{u\}} N[w]$ então $\exists S \subseteq V(G)|H(S)=V(G)$ e $|4|=3$ então $h(G) \le 3$, pela proposição ~\ref{prop-env-d2}(a).
+
+
+%\begin{figure}[h]
+%\centering
+%\label{fig:setunion-4}
+%\begin{tikzpicture}
+%  \draw (0.36,-0.56) ellipse[x radius=1.6,y radius = 3.2]; %A
+%  \draw[rotate=72] (0.36,-0.56) ellipse[x radius=1.6,y radius = 3.2]; %A
+%  \draw[rotate=144] (0.36,-0.56) ellipse[x radius=1.6,y radius = 3.2]; %A
+%  \draw[rotate=216] (0.36,-0.56) ellipse[x radius=1.6,y radius = 3.2]; %A
+%  \draw[rotate=288] (0.36,-0.56) ellipse[x radius=1.6,y radius = 3.2]; %A
+
+%  \node at (2.8,2.5) {$N[v_c]$};
+%  \node at (4.2,-1) {$N[v_d]$};
+%  \node at (-4,-1) {$N[v_z]$};
+%  \node at (0.5,-4) {$N[v_e]$};
+%  \node at (-3.3,2.5) {$N[v_a]$};
+
+%  \draw  (0,-6) ellipse (3 and 1);
+%  \node at (0,-6) {$V(G) \setminus \bigcup_{u \in \{v_a,v_c,v_e,v_z,v_d\}} N[u]$};
+%\end{tikzpicture}
+%\caption{$N[v_a]$, $N[v_c]$, $N[v_e]$, $N[v_z]$ e $N[v_d]$}
+%\end{figure}
+%\end{proof}
+
+%\begin{lemma}
+%     Seja G um grafo de diâmetro 2 não supergrafo de estrela e $S^\prime \subseteq V(G)$. Se $H(S^\prime)$ é um conjunto domiante então G possui um conjunto envoltório S tal que  $|S| = |S|+1$.
+%\end{lemma}
+%\begin{proof}     
+%\end{proof}
+
+
+%\begin{proposition}
+%Seja G um grafo de diâmetro 2 e grau minimo $\delta \ge 2$.
+%\begin{enumerate}[label=(\alph*)]
+%        \item {Sejam vértices distintos $v_a,v_c \in V(G)$ se $N(v_a) %\setminus N(v_c) = \emptyset$ ou $N(v_c) \setminus N(v_a) = \emptyset$ então $H(\{v_a,v_c\})$ é um conjunto dominante}
+%        \item{Seja D um conjunto dominante de G, então G possui um conjunto envoltório $S\subseteq V(G)$  tal que $|S| \le |D|+1$}
+%        \item{Seja $A\subseteq G$ e $H(S)$ é um conjunto dominante de G, então G possui um conjunto envoltório $S \subseteq V(G)$  tal que $|S| \le |A|+1$}
+
+%\end{enumerate}
+%\label{prop-env-d2}
+%\end{proposition}
+%\begin{proof}
+
+%Seja G um grafo de diâmetro 2,grau minimio $\delta>1$ e dois vértices distintos $v_1,v_2 \in V(G)$ e $N(v_1) \setminus N(v_2)=\emptyset$ então $N(v_1) \subseteq N(v_2)$ o que implica que $N[v_1] \subseteq (\{v_1,v_2\})$ o que pela proposição ~\ref{prop:diametro2}(a) é um conjunto dominante o que implica na proposição ~\ref{prop-env-d2}(a).
+
+%Seja G um grafo de diâmetro 2,grau minimio $\delta>1$ e D um conjunto dominante, 
+%então também temos que $H(D)$ é um conjunto dominante, ou seja todo vértice de G que não esteja em $H(D)$ tem ao menos um vizinho em $H(D)$, caso $\exists v in V(G) \setminus H(S)$ então e e $N(v)\setminus D$ é não vázio e $v \not\in H(D)$ então o $H(D \cup \{v\}) contém dois conjuntos dominantes D distintos N[v], e todo vértice em V(G)$, portanto temos a proposição ~\ref{prop-env-d2}(b).
+%\end{proof}
+
+
+
+
+Supondo que todos os vértices selecionados sejam vértices de grau minimo, temos que $|N(H(S_i))|=|H(S_i)|\times\delta$.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|l|l|l|l}
+Passo & $|S|$  & $|H(S)|$ & $|N|$ & $|E|$  \\ \hline
+  0 & 0    & 0     & 0             & n                    \\
+  1 & 1    & 1     & $\delta$      & $n - (\delta + 1)  $ \\
+  2 & 2    & 3     & $3\delta$     & $n - (3\delta + 2) $ \\
+  3 & 3    & 7     & $7\delta$     & $n - (7\delta + 3) $ \\
+  4 & 4    & 15    & $15\delta$    & $n - (15\delta + 4)$ \\
+... & ...& ...      & ...           & ...                  \\
+  $k$ & $k$    & $2^k-1$& $(2^k-1)\delta$ & $n - ((2^k-1)\delta + k)$ \\
+\end{tabular}
+\caption{Progressão da Cardinalidade dos Conjuntos}
+\label{tab:crescimento-envoltoria-dominante}
+\end{table}
+
+Quando E for vázio, temos que $H(S)$ é pelo menos dominante, como podemos observar até agora, o crescimento de $N(H(S)$ é exponencial em relação ao tamanho de $S$, que por sua vez tem relação direta com o decaminto de $E$. 
+Pela relação de $N$ e $E$, podemos concluir quando $N$ for maior ou igual a n, o conjunto $E$ será vázio. Portanto quando $(2^k-1)\delta + k \ge n$ o conjunto $E$ será vázio. Desenvolvendo a inequação temos que:
+
+$$ (2^k-1)\delta + k \ge n $$
+$$ (2^k-1)\delta \ge n -k $$
+$$ (2^k-1) \ge \frac{n-k}{\delta} $$
+$$ 2^k \ge \frac{n-k}{\delta} +1 $$
+$$ 2^k \ge \frac{n-k+\delta}{\delta} $$
+$$ k \ge \lg{(\frac{n-k+\delta}{\delta})} $$
+$$ k \ge \lg{(n-k+\delta)} - \lg{(\delta)} $$
+$$ k \ge \lg{(n+\delta)} - \lg{(\delta)}  \ge \lg{(n-k+\delta)} - \lg{(\delta)} $$
+
+Podemos concluir que é possível construir um conjunto $S^\prime$ de cardinalidade $k$, cuja envoltória convexa é dominante. Dado o lema ~\ref{hs-dominante-envoltorio} então podemos ter um conjunto envoltório $k+1$. Com isso temos um limite superior para o número envoltório de grafos de diâmetro 2, tal que:
+
+$$ h(G) \le \left\lfloor \lg{ \frac{n+\delta}{\delta} } \right\rfloor + 1  $$
+
+
+
+
+Supondo que todos os vértices selecionados sejam vértices de grau minimo, temos que $|N(H(S_i))|=|H(S_i)|\times\delta$.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|l|l|l|l}
+Passo & $|S|$  & $|H(S)|$ & $|N|$ & $|E|$  \\ \hline
+  0 & 0    & 0     & 0             & n                    \\
+  1 & 1    & 1     & $\delta$      & $n - (\delta + 1)  $ \\
+  2 & 2    & 3     & $3\delta$     & $n - (3\delta + 2) $ \\
+  3 & 3    & 7     & $7\delta$     & $n - (7\delta + 3) $ \\
+  4 & 4    & 15    & $15\delta$    & $n - (15\delta + 4)$ \\
+... & ...& ...      & ...           & ...                  \\
+  $k$ & $k$    & $2^k-1$& $(2^k-1)\delta$ & $n - ((2^k-1)\delta + k)$ \\
+\end{tabular}
+\caption{Progressão da Cardinalidade dos Conjuntos}
+\label{tab:crescimento-envoltoria-dominante}
+\end{table}
+
+Quando E for vázio, temos que $H(S)$ é pelo menos dominante, como podemos observar até agora, o crescimento de $N(H(S)$ é exponencial em relação ao tamanho de $S$, que por sua vez tem relação direta com o decaminto de $E$. 
+Pela relação de $N$ e $E$, podemos concluir quando $N$ for maior ou igual a n, o conjunto $E$ será vázio. Portanto quando $(2^k-1)\delta + k \ge n$ o conjunto $E$ será vázio. Desenvolvendo a inequação temos que:
+
+$$ (2^k-1)\delta + k \ge n $$
+$$ (2^k-1)\delta \ge n -k $$
+$$ (2^k-1) \ge \frac{n-k}{\delta} $$
+$$ 2^k \ge \frac{n-k}{\delta} +1 $$
+$$ 2^k \ge \frac{n-k+\delta}{\delta} $$
+$$ k \ge \lg{(\frac{n-k+\delta}{\delta})} $$
+$$ k \ge \lg{(n-k+\delta)} - \lg{(\delta)} $$
+$$ k \ge \lg{(n+\delta)} - \lg{(\delta)}  \ge \lg{(n-k+\delta)} - \lg{(\delta)} $$
+
+Podemos concluir que é possível construir um conjunto $S^\prime$ de cardinalidade $k$, cuja envoltória convexa é dominante. Dado o lema ~\ref{hs-dominante-envoltorio} então podemos ter um conjunto envoltório $k+1$. Com isso temos um limite superior para o número envoltório de grafos de diâmetro 2, tal que:
+
+$$ h(G) \le \left\lfloor \lg{ \frac{n+\delta}{\delta} } \right\rfloor + 1  $$
+
+
+    Seja G um grafo de diâmetro 2 de grau maximo $\Delta<n-1$, pela proposição ~\ref{prop:diametro2}(b) e (c), temos que G não poussui vértice isolado ou de corte.    Se G possui um ciclo $C_6$ com a escolha adequada de vértices é possível construir um conjunto $S^\prime = \{v_1,v_2,v_3\} \subseteq V(G)$ tal que $H(S^\prime)$ contem todos os vértices do ciclo $C_6$. Com um ciclo $C_6$ podemos separar os vértices em quatro conjuntos $C={v \in C_g}$, $N=N(C)\setminus C$ e $E=V(G)$.
+    Se $E$ é vázio ou G não possui um ciclo $C_6$ então $H(S^\prime)$ é um conjunto dominante. Se $H(S^\prime)=V(G)$ então $S^\prime$ é um conjunto envoltória então $h(G)\le 3$. Se $S^\prime$ não é um conjunto envoltório com $E$ vazio, $H(S^\prime)$, então pelo lema ~\ref{hs-dominante-envoltorio} $\forall v \in V(G) \setminus H(S^\prime)$ tal que $H(S^\prime \cup \{v\})$ então $S^\prime \{u\}$ é um conjunto envoltório, podemos concluir que $h(G) \le 4$.
+    
+    Se G possui um ciclo $C_6$ e $E$ não é vázio e $H(S^\prime)=V(G)$ então $S^\prime$ é um conjunto de envoltória e $h(G) \le 3$. Se $H(S^\prime)$ é dominante então pelo lema ~\ref{hs-dominante-envoltorio} $h(G) \le 4$. 
+    Se $E$ não é vázio e $H(S^\prime)$ não é dominante então $\exists v \in E \setminus H(S^\prime)$. Pelo lema ~\ref{hs-dominante-envoltorio-e}  $\forall v \in H(S)$ $S^\prime$ é um conjunto envoltória então $h(G)\le 4$.    
+\end{proof}
+
+%    Seja G um grafo de grau maximo $\Delta=n-1$ então temos pelo menos uma estrela que possui $n-1$ vértices isolados, $\forall v \in V(G)$ tal que $d(v)=1$ então não existe caminho $uvw$, dessa forma $v \in H(S) \Leftrightarrow v \in S$ dessa forma um conjunto minimo de envoltória precisaria de todos os vértices isolados, o vértice de corte $c$ por estar em todos os caminhos $vcw$ para todo $v,w \in V(G)$  número de vértices  n e um vértice de grau minimo $d(v)=1$, por ter diâmetro 2, todo vértice que não é vizinho de v, deve ter um vizinho em comum, por v possuir apenas um vizinho w, todos os vértices de V(G) são vizinhos de $w$, dessa forma G é ao menos uma estrela, o número de envoltória da estrela já é bem conhecido, $h(G) \le n-1$. O que prova o teorema~\ref{teor-env-gd2} (a). 
+
+
+
+
+
+
+
+
+
+
+
+% \begin{conjecture}
+% Seja $G$ um grafo fortemente regular e $c=1$ então $h(G) \le 5$
+% \label{teor-d2-c-1}
+% \end{conjecture}
+% \begin{proof}
+
+% Se $G$ um grafo fortemente regular, em que todo par de vértice não adjacente tenha exatamente um vértice em comum. Seja $v$ um vértice de $G$ e $v_1,v_2,v_3,...,v_k$ seus vizinhos. Seja um vértice $u_1\ne v$ vizinho de $v_1$ e demais vizinhos $u_2,u_3,...,u_k$. Seja $w_1\ne v$ vizinho de $v_k$ e $w_1\not \in N(u_1)$. Façamos $S^\prime=\{v,u_1,w_1\}$ e $H(S^\prime)$. Caso $H(S^\prime)$ é envoltório então $h(G)=3$. Caso $H(S^\prime)$ não é envoltório mas é dominante, então $h(G)=4$.
+
+% Caso $H(S^\prime)$ não é envoltório ou dominante. Então temos um conjunto não vazio de vértices adjacentes a $v$ que não estão em $H(S^\prime)$. Para cada $v^\prime \in N(v) \setminus H(S^\prime)$ existem vértices $u^\prime \in N(u)$ e $w^\prime \in N(w)$ de modo que $\{u^\prime,w^\prime\} \subset N(v^\prime)$. 
+% Podemos perceber que $\forall x \in \{v^\prime,u^\prime,w^\prime\}|H(S^\prime \cup \{x\}) \rightarrow \{v^\prime,u^\prime,w^\prime\} \subset H(S^\prime \cup \{x\})$.
+
+% Façamos $X=N(v) \setminus H(S^\prime)$ então temos que $\forall x \in X|\rightarrow H(S^\prime \cup \{x\}) \rightarrow X\subset H(S^\prime \cup \{x\})$. **Provar por contradição**.
+
+% Com isso temos que  $H(S^\prime \cup \{x\})$ é ao menos dominante, e pelo Lema~\ref{hs-dominante-envoltorio} podemos concluir que existe um conjunto envoltório com cardinalidade 5, dessa forma $h(G)\le 5$. 
+% \end{proof}
+
+
+% \begin{conjecture}
+% Seja $G$ um grafo fortemente regular e $c>1$ então $h(G) \le 4$
+% \label{theor-d2-c-1}
+% \end{conjecture}
+% \begin{proof}
+
+%      Considere os conjuntos $H(S_2)$ e $V(G) \setminus H(\{S_2\})$. Se $N(u) \subseteq  \in H(S_2)$, $u \in H(S_2)$, então pela Proposição \ref{pro-diam-2-itemb} $H(S_2)$ é um conjunto dominante e pelo Lema \ref{hs-dominante-envoltorio} $S_2 \cup \{v\}$ é um conjunto envoltório, para $v \in V(G) \setminus H(S_2)$. Portanto $h(G)\le 4$.
+    
+%     Pelo mesmo argumento anterior, todo vértice de $H(S_2)$ possua pelo menos um vizinho em $V(G) \setminus H(\{S_2\})$ e não existe $v \in V(G) \setminus H(\{S_2\})$ que pertença a vizinhança de quaisquer dois vértices de $H(S_2)$. Seja $v_4 \in V(G) \setminus H(S_2)$.
+    
+%     Observe que todo vértice todo vértice em $N(z) \setminus H(\{S_2\})$ é adjacente a um vértice em $N(v_3) \setminus H(\{S_2\})$ e $N(u) \setminus H(\{S_2\})$, considere $v_4 \in V(G) \setminus H(S_2)$ tal que $v_4z \in E(G)$. 
+    
+% %está em um caminho que se encerra em z ou em um vértice único em $V(G) \setminus H(\{S_2\})$.
+    
+%     %Considere $v_4 \in V(G) \setminus H(S_2)$ tal que $v_4z \in E(G)$. Faça $S_3=\{v_1, v_2, v_3, v_4\}$. Se $N(v) \subseteq \in H(S_3)$, $v \in H(S_3)$, então pela Proposição \ref{pro-diam-2-itemb} $H(S_3)$ é um conjunto dominante e pelo Lema \ref{hs-dominante-envoltorio} $S_2 \cup \{v\}$ é um conjunto envoltório, para $v \in V(G) \setminus H(S_3)$. Portanto $h(G)\le 5$.
+
+% Objetivo e possibilidade-1:   Assuma que existe um vértice que não será contaminado por v1 v2 v3 e v4 e chegue a uma contradição.
+% Possível contradição-1: Se escolher o $v_1$ como $d(v_1)=\Delta$, se $v_4$ não for envoltória precisaria existir um $v$ tal que $d(v)>\Delta$.
+% Possível contradição-2: $d(G)>d(n)$
+% Possível contradição-3: Existe um vizinho de $v_3$ que não é vizinho de um vizinho de $v_4$.
+
+% Possibilidade-2: Provar que depois de $S_2$ existe um $v\in V(G)$ tal que $N(v) \subset N(H(S))$. Poderia finalizar a prova. 
+
+%      Pelo mesmo argumento anterior, todo vértice de $H(S_3)$ possui pelo menos um vizinho em $V(G) \setminus H(\{S_3\})$ e não existe $v \in V(G) \setminus H(\{S_2\})$ que pertença a vizinhança de quaisquer dois vértices de $H(S_3)$. Então $\exists v_5 \in V(G) \setminus H(\{S_3\})$ e $v_4v_5\in E(G)$. Façamos $S_4=\{v_1,v_2,v_3,v_5\}$ observe que $H(S_3) \subseteq H(S_4)$ temos que $H(S_5)$. Se $N(v) \subseteq \in H(S_4)$, $v \in H(S_4)$, então pela Proposição \ref{pro-diam-2-itemb} $H(S_4)$ é um conjunto dominante e pelo Lema \ref{hs-dominante-envoltorio} $S_4 \cup \{v\}$ é um conjunto envoltório, para $v \in V(G) \setminus H(S_3)$. Portanto $h(G)\le 5$.     
+     
+%      Todo vizinho de $v_5 \in V(G) \setminus H(S_5)$ é adjacente a um vizinho de $N(z)\setminus H(S_5)$, o contrário também é verdadeiro. Se $v_6 \in N(v_5)\setminus H(S_4)$, façamos $S_5=\{v_1,v_2,v_3,v_5,v_6\}$ então teremos $N(v_5) \subseteq H(S_5)$, supomos por contradição que $\exists v_c \in \in N(v_5)\setminus H(S_4)$ e $v_c \not \in H(S_5)$. Como $v_6 \not \in H(S_4)$ então $\exists v_7 \in V(G) \setminus H(S_4)$ e $v_6v_7 \in E(G)$ e com isso $v_7 \in H(S_5)$ e como $v_c \not \in H(S_4)$ então $\exists z_c \in V(G) \setminus H(S_4)$ e $v_cz_c \in E(G)$. Se $\exists z_cv_6 \in E(G)$ implica em $v_c \in H(S_5)$, se $\not \in \exists z_cv_6$ então $\exists v_8v_6 \in E(G)$ e $\exists z_cv_8 \in E(G)$, pela caracterização dos vértices complementares de $N(z)$ as possibilidades de $v_8$ é ser adjacente a $v_5$, $u$ ou $v_3$, em todos os casos implica que $z_c \in H(S_5)$ e consequentemente $v_c \in H(S_5)$ o que é uma contradição. Dessa forma concluímos que que $N(v_5) \subseteq H(S_5)$ e um conjunto envoltório. Portanto $h(G)\le 5$.    
+% \end{proof}
+
+% \begin{figure}[h]
+% \centering
+% \begin{tikzpicture}
+%     \node[circle,draw,fill=black!60,label=left:$w_{v_{12}}$] (v1) at (-20.5,0) {};
+%     \node[circle,draw,fill,label=left:$v_1$] (v2) at (-20,1.5) {};
+%     \node[circle,draw,fill,label=left:$v_2$] (v3) at (-20,-1.5) {};
+
+%     \draw  (v1) edge (v2);
+%     \draw  (v1) edge (v3);
+
+%     \draw[dotted]  (-20,0) ellipse (1.5 and 2);
+%     \draw[dotted]  (-17,0) ellipse (1.2 and 2);
+    
+% 	\node at (-20,2.2) {\tiny $H(\{v_1, v_2)\}$};
+% 	\node at (-17,2.2) {\tiny $V(G)\setminus H(\{v_1, v_2\})$};
+%     \node[draw,circle] (v4) at (-17.5,1.5) {};
+%     \node[draw,circle,label=right:$v_3$] (v5) at (-17.5,-1.5) {};
+%     \node[draw,circle] (v6) at (-17.5,0) {};
+    
+%     \draw[dotted] (v2) edge (v4);
+%     \draw[dotted] (v3) edge (v5);
+%     \draw[dotted] (v1) edge (v6);
+    
+%     \node[circle,draw,fill,label=left:$v_1$] (v11) at (-12.5,0) {};
+%     \node[circle,draw,fill=black!60,label=right:$w_{v13}$] (v12) at (-13,1) {};
+%     \node[circle,draw,fill=black!60,label=right:$w_{v12}$] (v13) at (-13,-1) {};
+
+%     \draw  (v11) edge (v12);
+%     \draw  (v11) edge (v13);
+
+%     \draw[dotted]  (-13.5,0) ellipse (1.5 and 2);
+%     \draw[dotted]  (-10.5,0) ellipse (1.2 and 2);
+    
+%     \node at (-13.5,2.2) {\tiny $H(\{v_1, v_2, v_3)\}$};
+%     \node at (-10.5,2.2) {\tiny $V(G)\setminus H(\{v_1, v_2, v_3\})$};
+%     \node[draw,circle,label=below right:$w_{v34}$] (v14) at (-10.5,1.5) {};
+%     \node[draw,circle,label=above right:$w_{v24}$] (v15) at (-10.5,-1.5) {};
+%     \node[draw,circle,label=right:$v_4$] (v16) at (-10,0) {}; 
+% 	\node[draw,circle,fill,label=below left:$v_3$] (v7) at (-14,1.5) {};
+% 	\node[draw,circle,fill,label=above left:$v_2$] (v8) at (-14,-1.5) {};
+	
+% 	\draw  (v7) edge (v12);
+% 	\draw  (v8) edge (v13);
+% 	\draw  (v8) edge (v7);
+% 	\draw  (v14) edge (v7);
+% 	\draw  (v8) edge (v15);
+% 	\draw  (v16) edge (v11);
+% 	\draw  (v14) edge (v16);
+% 	\draw  (v15) edge (v16);
+% 	\node at (-18.5,-2.5) {(a)};
+% 	\node at (-12,-2.5) {(b)};
+% \end{tikzpicture}
+% \caption{Envoltório $S_1$ e $S_2$}
+% \label{fig-graph-diameter-2}
+% \end{figure}
+
+
+
+% \begin{figure}[h]
+% \centering
+% \begin{tikzpicture}
+%    \node[circle,draw,fill,label=left:$v_1$] (v11) at (-25.5,0) {};
+%    \node[circle,draw,fill=black!60,label=right:$w_{v13}$] (v12) at (-26,1) {};
+%    \node[circle,draw,fill=black!60,label=right:$w_{v12}$] (v13) at (-26,-1) {};
+
+%   \draw  (v11) edge (v12);
+%   \draw  (v11) edge (v13);
+
+%   \draw[dotted]  (-26.5,0) ellipse (1.5 and 2);
+%   \draw[dotted]  (-23.5,0) ellipse (1.2 and 2);
+
+%   \node at (-26.5,2.2) {\tiny $H(\{v_1, v_2, v_3)\}$};
+%   \node at (-23.5,2.2) {\tiny $V(G)\setminus H(\{v_1, v_2, v_3\})$};
+%   \node[draw,circle,label=below right:$w_{v34}$] (v14) at (-23.5,1.5) {};
+%   \node[draw,circle,label=above right:$w_{v24}$] (v15) at (-23.5,-1.5) {};
+%   \node[draw,circle,label=right:$v_4$] (v16) at (-23,0) {}; 
+%   \node[draw,circle,fill,label=below left:$v_3$] (v7) at (-27,1.5) {};
+%   \node[draw,circle,fill,label=above left:$v_2$] (v8) at (-27,-1.5) {};
+
+%   \draw  (v7) edge (v12);
+%   \draw  (v8) edge (v13);
+%   \draw  (v8) edge (v7);
+%   \draw  (v14) edge (v7);
+%   \draw  (v8) edge (v15);
+%   \draw  (v16) edge (v11);
+%   \draw  (v14) edge (v16);
+%   \draw  (v15) edge (v16);
+%   \node at (-25,-2.5) {(a)};
+%   \node at (-18.5,-2.5) {(b)};
+
+%   \node[circle,draw,fill,label=left:$v_1$] (v21) at (-19,0) {};
+%   \node[circle,draw,fill=black!60,label=right:$w_{v23}$] (v22) at (-19.5,1) {};
+%   \node[circle,draw,fill=black!60,label=right:$w_{v12}$] (v23) at (-19.5,-1) {};
+
+%   \draw  (v21) edge (v22);
+%   \draw  (v21) edge (v23);
+
+%   \draw[dotted]  (-20,0) ellipse (1.5 and 2);
+%   \draw[dotted]  (-17,0) ellipse (1.2 and 2);
+
+%   \node at (-20,2.2) {\tiny $H(\{v_1, v_2, v_3)\}$};
+%   \node at (-17,2.2) {\tiny $V(G)\setminus H(\{v_1, v_2, v_3\})$};
+%   \node[draw,circle,label=below right:$w_{v34}$] (v24) at (-17,1.5) {};
+%   \node[draw,circle,label=above right:$w_{v24}$] (v25) at (-17,-1.5) {};
+%   \node[draw,circle,label=right:$v_4$] (v26) at (-16.5,0) {}; 
+%   \node[draw,circle,fill,label=below left:$v_3$] (v7) at (-20.5,1.5) {};
+%   \node[draw,circle,fill,label=above left:$v_2$] (v8) at (-20.5,-1.5) {};
+
+%   \draw  (v7) edge (v22);
+%   \draw  (v8) edge (v23);
+%   \draw  (v8) edge (v7);
+%   \draw  (v24) edge (v7);
+%   \draw  (v8) edge (v25);
+%   \draw  (v26) edge (v21);
+%   \draw  (v24) edge (v26);
+%   \draw  (v25) edge (v26);
+%   \node at (-18.5,-2.5) {(a)};
+%   \node at (-12,-2.5) {(b)};
+%   \node[draw,circle,dotted,label=right:{\tiny $w_{v1234}$}] (v2) at (-18,0.5) {};
+%   \node[draw,circle,dotted,label=right:{\tiny $w_{v2324}$}] (v1) at (-18,-0.5) {};
+%   \draw[dotted]  (v1) edge (v22);
+%   \draw[dotted]  (v1) edge (v25);
+%   \draw[dotted]  (v24) edge (v2);
+%   \draw[dotted]  (v2) edge (v23);
+% \end{tikzpicture}
+% \caption{Envoltório $S_3$}
+% \label{fig-graph-diameter-2}
+% \end{figure}

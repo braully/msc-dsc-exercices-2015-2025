@@ -1,0 +1,75 @@
+\node (v1) at (-14.1729,6.0067) {};
+\node (v5) at (-14.1729,5.0067) {};  
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$v$] (v) at (-12.4012,6.3026) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$u$] (u) at (-12.3191,4.7937) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$w$] (w) at (-12.2,5.5) {};
+\draw  (v1) edge (v);
+\draw  (v5) edge (u);
+\draw  (v) edge (w);
+\draw  (u) edge (w);	
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $H(S^\prime)$}] (v6) at (-14,5.5) {};
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $V(G) \setminus H(S^\prime)$}] at (-12.2,5.5) {};
+
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$v$] (vb) at (-8.7,6.3) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$u$] (ub) at (-8.8016,4.8143) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$w$] (wb) at (-10.1,5.5117) {};
+\draw  (vb) edge (wb);
+\draw  (ub) edge (wb);	
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $H(S^\prime)$}] at (-10.1,5.5) {};
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $V(G) \setminus H(S^\prime)$}] at (-8.5,5.5) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$v^\prime$] (v2) at (-8.3,5.9) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$u^\prime$] (v3) at (-8.3,5.2) {};
+\draw  (vb) edge (v2);
+\draw  (ub) edge (v3);
+\draw  (v2) edge (v3);
+
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$v$] (vc) at (-12.4,2.8) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$u$] (uc) at (-12.4,1) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$w$] (wc) at (-14,2) {};
+\draw  (vc) edge (wc);
+\draw  (uc) edge (wc);	
+
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $H(S^\prime)$}] at (-14,2) {};
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $V(G) \setminus H(S^\prime)$}] at (-12.2,2) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$v^\prime$] (vl) at (-12,2.5) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$u^\prime$] (ul) at (-11.9,1.5) {};
+\draw  (vc) edge (vl);
+\draw  (uc) edge (ul);
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=$w^\prime$] (v4) at (-12.5,2) {};
+\draw  (vl) edge (v4);
+\draw  (ul) edge (v4);
+\node (v7) at (-10.1,6.1) {};
+\node (v8) at (-10.1,4.8) {};
+\node (v9) at (-14,2.5) {};
+\node (v10) at (-14,1.5) {};
+
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$v$] (vc2) at (-8.5,3) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$u$] (uc2) at (-8.5,1) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$w$] (wc2) at (-10,2) {};
+\draw  (vc2) edge (wc2);
+\draw  (uc2) edge (wc2);	
+
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $H(S^\prime)$}] at (-10.1,2) {};
+\node[draw,ellipse,minimum width=1.5cm,minimum height=2.5cm,label={\scriptsize $V(G) \setminus H(S^\prime)$}] at (-8.4,2) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$v^\prime$] (vl2) at (-8.5,2.5) {};
+\node[draw,circle,inner sep=0pt,minimum size=5pt,label=right:$u^\prime$] (ul2) at (-8.5,1.5) {};
+
+\draw  (vc2) edge (vl2);
+\draw  (uc2) edge (ul2);
+\node at (-10.1,6.1) {};
+\node at (-10.1,4.8) {};
+\node at (-10.2,2.7) {};
+\node at (-10.1,1.5) {};
+\draw  (vl2) edge (wc2);
+\draw  (ul2) edge (wc2);
+
+\draw[dotted]  (w) edge (v6);
+\draw[dotted]  (v7) edge (v2);
+\draw[dotted]  (v8) edge (v3);
+\draw[dotted]  (v9) edge (vl);
+\draw[dotted]  (v10) edge (ul);
+
+\node at (-13.1,4) {Caso 1};
+\node at (-9.2,4) {Caso 2.1};
+\node at (-13.1,0.5) {Caso 2.2};
+\node at (-9.2,0.5) {Caso 2.3};
